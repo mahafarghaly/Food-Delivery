@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:food_app/features/home/data/model/menu_with_restaurant.dart';
 
 import '../../../../base/data/helpers/request_state.dart';
 import '../../../data/model/menu.dart';
@@ -7,15 +8,15 @@ import '../../../data/model/restaurant.dart';
 class RestaurantsState extends Equatable {
   final List<Restaurant> restaurants;
   final List<Restaurant> filteredRestaurants;
-  final List<Menu> filteredMenu;
+  final List<MenuWithRestaurant> filteredMenu;
   final RequestState restaurantsState;
   final String restaurantsMessage;
-  final bool showNearestR;
-  final bool showPRestaurants;
-  final bool showPMenu;
+   bool showNearestR;
+   bool showPRestaurants;
+   bool showPMenu;
   final String selectedChip;
 
-  const RestaurantsState(
+   RestaurantsState(
       {this.restaurants = const [],
         this.filteredMenu = const [],
         this.selectedChip = "Restaurant",
@@ -30,7 +31,7 @@ class RestaurantsState extends Equatable {
     List<Restaurant>? restaurants,
     String? selectedChip,
     List<Restaurant>? filteredRestaurants,
-    List<Menu>? filteredMenu,
+    List<MenuWithRestaurant>? filteredMenu,
     RequestState? restaurantsState,
     String? restaurantsMessage,
     bool? showAllNearest,

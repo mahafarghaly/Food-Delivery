@@ -17,8 +17,7 @@ import '../../bloc/restaurant_bloc/restaurant_event.dart';
 import '../widgets/lists/popular_restaurant_list.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key, this.content});
-final Widget? content;
+  const HomeScreen({super.key});
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -32,7 +31,7 @@ final Widget? content;
             child: CustomScrollView(
               slivers: [
                 SliverToBoxAdapter(
-                  child:content?? Column(
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const BannerDisplay()

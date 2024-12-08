@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_app/core/utils/app_assets.dart';
 import 'package:food_app/core/utils/theme/app_theme_data.dart';
 import 'package:food_app/features/home/presentation/views/screens/home_screen.dart';
+import 'package:food_app/features/search/search_result_screen.dart';
 import 'core/service/service_locator.dart';
 import 'core/utils/theme/app_theme.dart';
 import 'features/base/presentation/bloc/app_bloc.dart';
@@ -13,10 +14,7 @@ import 'features/home/presentation/bloc/restaurant_bloc/restaurant_bloc.dart';
 import 'features/home/presentation/bloc/restaurant_bloc/restaurant_event.dart';
 
 class FoodDeliveryApp extends StatelessWidget {
-  const FoodDeliveryApp({super.key, this.content});
-
-  final Widget? content;
-
+  const FoodDeliveryApp({super.key});
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -40,9 +38,7 @@ class FoodDeliveryApp extends StatelessWidget {
           context.read<AppBloc>().add(FetchLocationEvent());
 
           final screens = [
-            HomeScreen(
-              content: content,
-            ),
+          const HomeScreen(),
             const Center(child: Text("Search Screen")),
             const Center(child: Text("Profile Screen")),
             const Center(child: Text("Profile Screen")),

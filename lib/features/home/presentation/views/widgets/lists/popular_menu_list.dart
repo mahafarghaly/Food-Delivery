@@ -3,14 +3,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_app/core/exenstions/context_extenstion.dart';
 import 'package:food_app/features/base/data/helpers/request_state.dart';
+import 'package:food_app/features/home/data/model/menu_with_restaurant.dart';
 import 'package:food_app/features/home/presentation/bloc/restaurant_bloc/restaurant_bloc.dart';
 import 'package:food_app/features/home/presentation/bloc/restaurant_bloc/restaurant_state.dart';
 import 'package:food_app/features/home/presentation/views/widgets/menu_item.dart';
 
 import '../../../../data/model/menu.dart';
 class PopularMenuList extends StatelessWidget {
-  const PopularMenuList({super.key});
-
+  const PopularMenuList({super.key, this.filteredMenu});
+final List<MenuWithRestaurant>? filteredMenu;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<RestaurantsBloc, RestaurantsState>(
@@ -26,7 +27,14 @@ class PopularMenuList extends StatelessWidget {
 
           case RequestState.loaded:
             final restaurants = state.restaurants;
-            final popularMenuItems = restaurants.expand((restaurant)=>
+            final popularMenuItems =filteredMenu != null
+            ? filteredMenu!.map((menuItem) {
+        return {
+        'menuItem': menuItem.menu,
+        'restaurantName': menuItem.restaurantName,
+        };
+        }).toList()
+            : restaurants.expand((restaurant)=>
                (restaurant.menu ?? [])
                   .where((menuItem) =>
                       menuItem.rate! >= 4)
