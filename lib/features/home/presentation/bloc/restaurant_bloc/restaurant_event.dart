@@ -12,9 +12,7 @@ class ToggleViewPRestaurantMore extends RestaurantsEvent {}
 class ToggleViewPMenuMore extends RestaurantsEvent {}
 class SearchRestaurantsEvent extends RestaurantsEvent {
   final String query;
-  final String? selectedChip;
-
-  const SearchRestaurantsEvent(this.query, {this.selectedChip});
+  const SearchRestaurantsEvent(this.query);
 }
 class SelectChipEvent extends RestaurantsEvent {
   final String chipLabel;

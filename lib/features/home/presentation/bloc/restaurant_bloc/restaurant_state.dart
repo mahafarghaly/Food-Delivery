@@ -14,12 +14,12 @@ class RestaurantsState extends Equatable {
    bool showNearestR;
    bool showPRestaurants;
    bool showPMenu;
-  final String selectedChip;
+  final String selectedChipType;
 
    RestaurantsState(
       {this.restaurants = const [],
         this.filteredMenu = const [],
-        this.selectedChip = "Restaurant",
+        this.selectedChipType="",
         this.filteredRestaurants= const[],
         this.restaurantsState = RequestState.loading,
       this.restaurantsMessage = "",
@@ -29,7 +29,7 @@ class RestaurantsState extends Equatable {
 
   RestaurantsState copyWith({
     List<Restaurant>? restaurants,
-    String? selectedChip,
+    String? selectedChipType,
     List<Restaurant>? filteredRestaurants,
     List<MenuWithRestaurant>? filteredMenu,
     RequestState? restaurantsState,
@@ -41,7 +41,7 @@ class RestaurantsState extends Equatable {
   }) {
     return RestaurantsState(
         restaurants: restaurants ?? this.restaurants,
-        selectedChip: selectedChip ?? this.selectedChip,
+        selectedChipType: selectedChipType ?? this.selectedChipType,
         filteredRestaurants: filteredRestaurants ?? this.filteredRestaurants,
         filteredMenu: filteredMenu??this.filteredMenu,
         restaurantsState: restaurantsState ?? this.restaurantsState,
@@ -61,7 +61,7 @@ class RestaurantsState extends Equatable {
         showPRestaurants,
         showPMenu,
         filteredRestaurants,
-    selectedChip,
+    selectedChipType,
     filteredMenu
       ];
 }

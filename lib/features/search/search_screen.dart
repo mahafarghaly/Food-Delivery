@@ -32,7 +32,6 @@ class SearchScreen extends StatelessWidget {
               right: 0,
               child: Image.asset(AppAssets.homeBackgroundImage)),
           BlocBuilder<RestaurantsBloc, RestaurantsState>(
-
             builder: (BuildContext context, RestaurantsState state) {
               return Column(
                 children: [
@@ -41,45 +40,44 @@ class SearchScreen extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const HomeAppbarSection(
+                          HomeAppbarSection(
                             enableSearch: true,
                           ).paddingTop(60.h),
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text("Type", style: context.textTheme.bodyLarge,).paddingVertical(
-                                          20.h),
-
-                                      Row(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          CustomChip(
-                                            label: "Restaurant",
-                                            isSelected: state.selectedChip == "Restaurant",
-                                            onTap: () {
-                                              context
-                                                  .read<RestaurantsBloc>()
-                                                  .add(SelectChipEvent("Restaurant"));
-                                            },
-                                          ),
-                                          SizedBox(width: 10.h),
-                                          CustomChip(
-                                            label: "Menu",
-                                            isSelected: state.selectedChip == "Menu",
-                                            onTap: () {
-                                              context
-                                                  .read<RestaurantsBloc>()
-                                                  .add(SelectChipEvent("Menu"));
-
-                                            },
-                                          ),
-
-
-                                        ],
-                                      ),
-                                      Text("Location", style: context.textTheme.bodyLarge,)
-                                          .paddingVertical(20.h),
-                                      /*  Row(
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Type",
+                                style: context.textTheme.bodyLarge,
+                              ).paddingVertical(20.h),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  CustomChip(
+                                    label: "Restaurant",
+                                    isSelected:
+                                        state.selectedChipType == "Restaurant",
+                                    onTap: () {
+                                      context.read<RestaurantsBloc>().add(
+                                          const SelectChipEvent("Restaurant"));
+                                    },
+                                  ),
+                                  SizedBox(width: 10.h),
+                                  CustomChip(
+                                    label: "Menu",
+                                    isSelected: state.selectedChipType == "Menu",
+                                    onTap: () {
+                                      context.read<RestaurantsBloc>().add(
+                                          const SelectChipEvent("Menu"));
+                                    },
+                                  ),
+                                ],
+                              ),
+                              Text(
+                                "Location",
+                                style: context.textTheme.bodyLarge,
+                              ).paddingVertical(20.h),
+                              /*  Row(
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
                                             const CustomChip(label: "1 KM").paddingRight(10.w),
@@ -89,13 +87,10 @@ class SearchScreen extends StatelessWidget {
 
                                           ],
                                         ),*/
-
-                                    ],).paddingHorizontal(25.w),
-
-
+                            ],
+                          ).paddingHorizontal(25.w),
 
                           // const Spacer(),
-
                         ],
                       ),
                     ),
@@ -112,30 +107,51 @@ class SearchScreen extends StatelessWidget {
                                 context.colorScheme.primary,
                               ],
                               begin: Alignment.topLeft,
-                              end: Alignment.bottomRight
-                          )
-                      ),
+                              end: Alignment.bottomRight)),
                       child: MaterialButton(
-                        onPressed: (){
+                        onPressed: () {
                           //  Navigator.pop(context);
-                          if(state.filteredRestaurants.isNotEmpty){
-                            AppNavigation.navigationTo(context, SearchResultScreen(content: PopularRestaurantList(filteredRestaurant: state.filteredRestaurants,),));
-                          }else if(state.filteredMenu.isNotEmpty) {
-                            AppNavigation.navigationTo(context,
+                          if (state.filteredRestaurants.isNotEmpty) {
+                            AppNavigation.navigationTo(
+                                context,
+                                SearchResultScreen(
+                                  content: PopularRestaurantList(
+                                    filteredRestaurant:
+                                        state.filteredRestaurants,
+
+                                  ),
+                                  text: " Popular Restaurant",
+                                ));
+                          } else if (state.filteredMenu.isNotEmpty) {
+                            AppNavigation.navigationTo(
+                                context,
                                 SearchResultScreen(
                                   content: PopularMenuList(
-                                    filteredMenu: state
-                                        .filteredMenu,),));
+                                    filteredMenu: state.filteredMenu,
+                                  ),
+                                  text: " Popular Menu",
+                                ));
+                          }else{
+                            AppNavigation.navigationTo(
+                                context,
+                                 SearchResultScreen(
+                                  content:Center(child: Text("Not Found",style: context.textTheme.bodyLarge,),),
+
+                                 ),
+
+                            );
                           }
-    },child: Text("Search",style: context.textTheme.bodyLarge?.copyWith(
-                          fontSize: 14.sp,
-                          color: context.colorScheme.surface
-                      ),),)
-                  ).paddingAll(25),
+                        },
+                        child: Text(
+                          "Search",
+                          style: context.textTheme.bodyLarge?.copyWith(
+                              fontSize: 14.sp,
+                              color: context.colorScheme.surface),
+                        ),
+                      )).paddingAll(25),
                 ],
               );
             },
-
           )
         ],
       ),

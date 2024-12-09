@@ -16,10 +16,8 @@ class RestaurantsBloc
     on<ToggleViewNearestMore>(_onToggleViewMoreNR);
     on<ToggleViewPRestaurantMore>(_onToggleViewMorePR);
     on<ToggleViewPMenuMore>(_onToggleViewMorePM);
-   // on<SearchRestaurants>(_onSearchRestaurants);
     on<SearchRestaurantsEvent>(_onSearchRestaurants);
-
-    on<SelectChipEvent>(_onSelectChip);
+    on<SelectChipEvent>(_onSelectChipType);
 
   }
   Future<void> _onGetNearestRestaurants(
@@ -116,13 +114,12 @@ class RestaurantsBloc
       Emitter<RestaurantsState> emit,
       ) {
     final query = event.query.toLowerCase();
-    final selectedChip = event.selectedChip;
+    final selectedChipType = state.selectedChipType;
 
     List<Restaurant> filteredRestaurant = [];
     List<MenuWithRestaurant> filteredMenu = [];
 
-    if (selectedChip == "Restaurant") {
-      // Filter restaurants by name
+    if (selectedChipType == "Restaurant") {
       filteredRestaurant = state.restaurants
           .where((restaurant) =>
       restaurant.name?.toLowerCase().contains(query) ?? false)
@@ -132,8 +129,7 @@ class RestaurantsBloc
         filteredRestaurants: filteredRestaurant,
         filteredMenu: [],
       ));
-    } else if (selectedChip == "Menu") {
-      // Filter menus by name and include restaurant name
+    } else if (selectedChipType == "Menu") {
       filteredMenu = state.restaurants
           .expand((restaurant) => restaurant.menu?.map((menuItem) {
         return MenuWithRestaurant(
@@ -150,7 +146,6 @@ class RestaurantsBloc
         filteredMenu: filteredMenu,
       ));
     } else {
-      // Handle both Restaurant and Menu
       final restaurantMatches = state.restaurants
           .where((restaurant) =>
       restaurant.name?.toLowerCase().contains(query) ?? false)
@@ -176,7 +171,6 @@ class RestaurantsBloc
       ));
     }
 
-    // Debugging: Print results
     print("Search Results:");
     for (var result in filteredRestaurant) {
       print("Restaurant: ${result.name}");
@@ -187,29 +181,8 @@ class RestaurantsBloc
   }
 
 
-  void _onSelectChip(
-      SelectChipEvent event,
-      Emitter<RestaurantsState> emit,
-      ) {
-    final selectedChip = event.chipLabel;
-
-    List<Restaurant> filteredRestaurants;
-    if (selectedChip == "Restaurant") {
-      filteredRestaurants = state.restaurants;
-    } else if (selectedChip == "Menu") {
-      filteredRestaurants = state.restaurants
-          .where((restaurant) => restaurant.menu != null && restaurant.menu!.isNotEmpty)
-          .toList();
-    } else {
-      filteredRestaurants = state.restaurants;
-    }
-
-
-
-    emit(state.copyWith(
-      selectedChip: selectedChip,
-      filteredRestaurants: filteredRestaurants,
-    ));
+  void _onSelectChipType(SelectChipEvent event, Emitter<RestaurantsState> emit) {
+    emit(state.copyWith(selectedChipType: event.chipLabel));
   }
 
 }

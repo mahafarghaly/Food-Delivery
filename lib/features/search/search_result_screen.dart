@@ -11,8 +11,9 @@ import '../../core/utils/app_assets.dart';
 import '../home/presentation/views/widgets/home_appbar_section.dart';
 
 class SearchResultScreen extends StatelessWidget {
-  const SearchResultScreen({super.key, this.content});
+  const SearchResultScreen({super.key, this.content, this.text});
 final Widget? content;
+final String? text;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +33,7 @@ final Widget? content;
                 const HomeAppbarSection().paddingTop(60.h),
                 SizedBox(height: 20.h,),
                 Text(
-                  "Popular Restaurants",
+                  text??"",
                   style: context.textTheme.labelLarge?.copyWith(fontSize: 15.sp),
                 ).paddingHorizontal(30.w),
                  Expanded(child:content??const Text("Not Exist"))
