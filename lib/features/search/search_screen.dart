@@ -5,6 +5,8 @@ import 'package:food_app/app.dart';
 import 'package:food_app/core/exenstions/context_extenstion.dart';
 import 'package:food_app/core/exenstions/widget_extensions.dart';
 import 'package:food_app/core/utils/app_navigation.dart';
+import 'package:food_app/features/home/presentation/bloc/search_bloc/search_bloc.dart';
+import 'package:food_app/features/home/presentation/bloc/search_bloc/search_state.dart';
 import 'package:food_app/features/home/presentation/views/screens/home_screen.dart';
 import 'package:food_app/features/home/presentation/views/widgets/custom_chip.dart';
 import 'package:food_app/features/home/presentation/views/widgets/home_appbar_section.dart';
@@ -14,10 +16,7 @@ import 'package:food_app/features/search/search_result_screen.dart';
 
 import '../../core/service/service_locator.dart';
 import '../../core/utils/app_assets.dart';
-import '../home/presentation/bloc/restaurant_bloc/restaurant_bloc.dart';
-import '../home/presentation/bloc/restaurant_bloc/restaurant_event.dart';
-import '../home/presentation/bloc/restaurant_bloc/restaurant_state.dart';
-
+import '../home/presentation/bloc/search_bloc/search_event.dart';
 class SearchScreen extends StatelessWidget {
   const SearchScreen({super.key});
 
@@ -31,8 +30,8 @@ class SearchScreen extends StatelessWidget {
               top: 0,
               right: 0,
               child: Image.asset(AppAssets.homeBackgroundImage)),
-          BlocBuilder<RestaurantsBloc, RestaurantsState>(
-            builder: (BuildContext context, RestaurantsState state) {
+          BlocBuilder<SearchBloc, SearchState>(
+            builder: (BuildContext context, SearchState state) {
               return Column(
                 children: [
                   Expanded(
@@ -58,17 +57,19 @@ class SearchScreen extends StatelessWidget {
                                     isSelected:
                                         state.selectedChipType == "Restaurant",
                                     onTap: () {
-                                      context.read<RestaurantsBloc>().add(
-                                          const SelectChipEvent("Restaurant"));
+                                      context.read<SearchBloc>().add(
+                                           const SelectChipEvent("Restaurant"));
                                     },
                                   ),
                                   SizedBox(width: 10.h),
                                   CustomChip(
                                     label: "Menu",
-                                    isSelected: state.selectedChipType == "Menu",
+                                    isSelected:
+                                        state.selectedChipType == "Menu",
                                     onTap: () {
-                                      context.read<RestaurantsBloc>().add(
-                                          const SelectChipEvent("Menu"));
+                                      context
+                                          .read<SearchBloc>()
+                                          .add(const SelectChipEvent("Menu"));
                                     },
                                   ),
                                 ],
@@ -77,16 +78,35 @@ class SearchScreen extends StatelessWidget {
                                 "Location",
                                 style: context.textTheme.bodyLarge,
                               ).paddingVertical(20.h),
-                              /*  Row(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            const CustomChip(label: "1 KM").paddingRight(10.w),
-                                            const CustomChip(label: ">10 KM").paddingRight(10.w),
-                                            const CustomChip(label: "<10 KM")
-
-
-                                          ],
-                                        ),*/
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  CustomChip(
+                                    label: "1 KM",
+                                    isSelected:  state.selectedDistance == 1.0,
+                                    onTap: () {
+                                      context
+                                          .read<SearchBloc>().add(SelectDistanceEvent(1.0));
+                                    },
+                                  ).paddingRight(10.w),
+                                  CustomChip(
+                                    label: ">10 KM",
+                                      isSelected:  state.selectedDistance == 10.0,
+                                      onTap: () {
+                                        context
+                                            .read<SearchBloc>().add(SelectDistanceEvent(10.0));
+                                      },
+                                  ).paddingRight(10.w),
+                                  CustomChip(
+                                    label: "<10 KM",
+                                    isSelected:  state.selectedDistance == 50.0,
+                                    onTap: () {
+                                      context
+                                          .read<SearchBloc>().add(SelectDistanceEvent(50.0));
+                                    },
+                                  )
+                                ],
+                              ),
                             ],
                           ).paddingHorizontal(25.w),
 
@@ -118,7 +138,6 @@ class SearchScreen extends StatelessWidget {
                                   content: PopularRestaurantList(
                                     filteredRestaurant:
                                         state.filteredRestaurants,
-
                                   ),
                                   text: " Popular Restaurant",
                                 ));
@@ -131,14 +150,17 @@ class SearchScreen extends StatelessWidget {
                                   ),
                                   text: " Popular Menu",
                                 ));
-                          }else{
+                          } else {
                             AppNavigation.navigationTo(
-                                context,
-                                 SearchResultScreen(
-                                  content:Center(child: Text("Not Found",style: context.textTheme.bodyLarge,),),
-
-                                 ),
-
+                              context,
+                              SearchResultScreen(
+                                content: Center(
+                                  child: Text(
+                                    "Not Found",
+                                    style: context.textTheme.bodyLarge,
+                                  ),
+                                ),
+                              ),
                             );
                           }
                         },

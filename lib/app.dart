@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_app/core/utils/app_assets.dart';
 import 'package:food_app/core/utils/theme/app_theme_data.dart';
+import 'package:food_app/features/home/presentation/bloc/search_bloc/search_bloc.dart';
 import 'package:food_app/features/home/presentation/views/screens/home_screen.dart';
 import 'package:food_app/features/search/search_result_screen.dart';
 import 'core/service/service_locator.dart';
@@ -20,14 +21,10 @@ class FoodDeliveryApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (BuildContext context) => sl<AppBloc>()),
-        BlocProvider(create: (BuildContext context) {
-          final bloc = sl<RestaurantsBloc>();
-          if (bloc.state.restaurants.isEmpty) {
-            bloc.add(GetRestaurants());
-          }
-          return bloc;
-          //  sl<RestaurantsBloc>()..add(GetRestaurants()),
-        }),
+        BlocProvider(create: (BuildContext context)=>  sl<RestaurantsBloc>()..add(GetRestaurants()),
+        ),
+        BlocProvider(create: (BuildContext context)=>  sl<SearchBloc>(),
+        )
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

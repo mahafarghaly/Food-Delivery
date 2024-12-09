@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_app/core/exenstions/context_extenstion.dart';
+import 'package:food_app/features/home/presentation/bloc/search_bloc/search_bloc.dart';
+import 'package:food_app/features/home/presentation/bloc/search_bloc/search_event.dart';
 import 'package:food_app/features/home/presentation/views/widgets/background_box.dart';
 
 import '../../bloc/restaurant_bloc/restaurant_bloc.dart';
@@ -23,7 +25,7 @@ final String? hintText;
               hintText: hintText??"What do you want to order?"
         ),
           onChanged: (query) {
-            context.read<RestaurantsBloc>().add(SearchRestaurantsEvent(query));
+            context.read<SearchBloc>().add(SearchRestaurantEvent(query));
           },
 
       ),
