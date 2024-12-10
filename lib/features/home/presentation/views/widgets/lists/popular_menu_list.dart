@@ -9,9 +9,13 @@ import 'package:food_app/features/home/presentation/bloc/restaurant_bloc/restaur
 import 'package:food_app/features/home/presentation/views/widgets/menu_item.dart';
 
 import '../../../../data/model/menu.dart';
+
 class PopularMenuList extends StatelessWidget {
-  const PopularMenuList({super.key, this.filteredMenu});
-final List<MenuWithRestaurant>? filteredMenu;
+  const PopularMenuList({super.key, this.filteredMenu, this.selectedDistance});
+
+  final List<MenuWithRestaurant>? filteredMenu;
+  final num? selectedDistance;
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<RestaurantsBloc, RestaurantsState>(
@@ -27,22 +31,25 @@ final List<MenuWithRestaurant>? filteredMenu;
 
           case RequestState.loaded:
             final restaurants = state.restaurants;
-            final popularMenuItems =filteredMenu != null
-            ? filteredMenu!.map((menuItem) {
-        return {
-        'menuItem': menuItem.menu,
-        'restaurantName': menuItem.restaurantName,
-        };
-        }).toList()
-            : restaurants.expand((restaurant)=>
-               (restaurant.menu ?? [])
-                  .where((menuItem) =>
-                      menuItem.rate! >= 4)
-                   .map((menuItem) => {
-                 'menuItem': menuItem,
-                 'restaurantName': restaurant.name,
-               }).take(2))
-                .toList();
+            final popularMenuItems = filteredMenu != null
+                ? filteredMenu!.map((menuItem) {
+                  if(selectedDistance!=null){
+
+                  }
+                    return MenuWithRestaurant(
+                      menu: menuItem.menu,
+                      restaurantName: menuItem.restaurantName,
+                    );
+                  }).toList()
+                : restaurants
+                    .expand((restaurant) => (restaurant.menu ?? [])
+                        .where((menuItem) => menuItem.rate! >= 4)
+                        .map((menuItem) => MenuWithRestaurant(
+                              menu: menuItem,
+                              restaurantName: restaurant.name ?? "",
+                            ))
+                        .take(2))
+                    .toList();
 
             final itemCount = state.showPMenu
                 ? popularMenuItems.length
@@ -58,17 +65,16 @@ final List<MenuWithRestaurant>? filteredMenu;
             return SizedBox(
               height: 174.h,
               child: ListView.builder(
-                itemCount: itemCount, // popularMenuItems.length,
+                itemCount: itemCount,
+                // popularMenuItems.length,
                 // physics: NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
-                 // final menuItem = popularMenuItems[index];
                   final popularItem = popularMenuItems[index];
-                  final  menuItem = popularItem['menuItem'] as Menu;
-                  final restaurantName = popularItem['restaurantName'] as String;
-
+                  final menuItem = popularItem.menu;
+                  final restaurantName = popularItem.restaurantName;
                   return MenuItem(
                     menu: menuItem.name!,
-                    restaurant: restaurantName,//restaurants[index].name!,
+                    restaurant: restaurantName, //restaurants[index].name!,
                     image: menuItem.image!,
                     price: menuItem.price!,
                   );

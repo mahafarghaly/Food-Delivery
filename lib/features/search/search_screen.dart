@@ -5,6 +5,8 @@ import 'package:food_app/app.dart';
 import 'package:food_app/core/exenstions/context_extenstion.dart';
 import 'package:food_app/core/exenstions/widget_extensions.dart';
 import 'package:food_app/core/utils/app_navigation.dart';
+import 'package:food_app/features/home/presentation/bloc/restaurant_bloc/restaurant_bloc.dart';
+import 'package:food_app/features/home/presentation/bloc/restaurant_bloc/restaurant_state.dart';
 import 'package:food_app/features/home/presentation/bloc/search_bloc/search_bloc.dart';
 import 'package:food_app/features/home/presentation/bloc/search_bloc/search_state.dart';
 import 'package:food_app/features/home/presentation/views/screens/home_screen.dart';
@@ -33,7 +35,7 @@ class SearchScreen extends StatelessWidget {
               right: 0,
               child: Image.asset(AppAssets.homeBackgroundImage)),
           BlocBuilder<SearchBloc, SearchState>(
-            builder: (BuildContext context, SearchState state) {
+            builder: (BuildContext context, SearchState searchState) {
               return Column(
                 children: [
                   Expanded(
@@ -56,18 +58,18 @@ class SearchScreen extends StatelessWidget {
                                 children: [
                                   CustomChip(
                                     label: "Restaurant",
-                                    isSelected:
-                                        state.selectedChipType == "Restaurant",
+                                    isSelected: searchState.selectedChipType ==
+                                        "Restaurant",
                                     onTap: () {
                                       context.read<SearchBloc>().add(
-                                           const SelectChipEvent("Restaurant"));
+                                          const SelectChipEvent("Restaurant"));
                                     },
                                   ),
                                   SizedBox(width: 10.h),
                                   CustomChip(
                                     label: "Menu",
                                     isSelected:
-                                        state.selectedChipType == "Menu",
+                                        searchState.selectedChipType == "Menu",
                                     onTap: () {
                                       context
                                           .read<SearchBloc>()
@@ -85,34 +87,76 @@ class SearchScreen extends StatelessWidget {
                                 children: [
                                   CustomChip(
                                     label: "1 KM",
-                                    isSelected:  state.selectedDistance == 1.0,
+                                    isSelected:
+                                        searchState.selectedDistance == 1.0,
                                     onTap: () {
                                       context
-                                          .read<SearchBloc>().add(SelectDistanceEvent(1.0));
+                                          .read<SearchBloc>()
+                                          .add(SelectDistanceEvent(1.0));
                                     },
                                   ).paddingRight(10.w),
                                   CustomChip(
                                     label: ">10 KM",
-                                      isSelected:  state.selectedDistance == 10.0,
-                                      onTap: () {
-                                        context
-                                            .read<SearchBloc>().add(SelectDistanceEvent(10.0));
-                                      },
+                                    isSelected:
+                                        searchState.selectedDistance == 10.0,
+                                    onTap: () {
+                                      context
+                                          .read<SearchBloc>()
+                                          .add(SelectDistanceEvent(10.0));
+                                    },
                                   ).paddingRight(10.w),
                                   CustomChip(
                                     label: "<10 KM",
-                                    isSelected:  state.selectedDistance == 80.0,
+                                    isSelected:
+                                        searchState.selectedDistance == 80.0,
                                     onTap: () {
                                       context
-                                          .read<SearchBloc>().add(SelectDistanceEvent(80.0));
+                                          .read<SearchBloc>()
+                                          .add(SelectDistanceEvent(80.0));
                                     },
                                   )
                                 ],
                               ),
+                              SizedBox(height: 20.h), // Space before food chips
+                              Text(
+                                "Food",
+                                style: context.textTheme.bodyLarge,
+                              ).paddingVertical(10.h),
+                              BlocBuilder<RestaurantsBloc, RestaurantsState>(
+                                builder: (BuildContext context,
+                                    RestaurantsState state) {
+                                  return Wrap(
+                                    //  spacing: 8.w,
+                                    runSpacing: 8.h,
+                                    children:
+                                        state.restaurants.map((restaurant) {
+                                      var foodItems =
+                                          restaurant.menu?.take(2).toList() ??
+                                              [];
+                                      return Row(
+                                        children: foodItems.map((menuItem) {
+                                          return Expanded(
+                                              child: CustomChip(
+                                            label: menuItem.name ?? "",
+                                            onTap: () {
+                                              context.read<SearchBloc>().add(
+                                                  FilterFoodItemEvent(
+                                                      menuItem.name ?? ""));
+                                            },
+                                            isSelected: context
+                                                .read<SearchBloc>()
+                                                .state
+                                                .selectedFoodItems
+                                                .contains(menuItem.name),
+                                          ));
+                                        }).toList(),
+                                      );
+                                    }).toList(),
+                                  );
+                                },
+                              ),
                             ],
                           ).paddingHorizontal(25.w),
-
-                          // const Spacer(),
                         ],
                       ),
                     ),
@@ -122,50 +166,68 @@ class SearchScreen extends StatelessWidget {
                       width: double.infinity,
                       height: 57.h,
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15.r),
-                          gradient: LinearGradient(
-                              colors: [
-                                context.colorScheme.secondary,
-                                context.colorScheme.primary,
-                              ],
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight)),
+                        borderRadius: BorderRadius.circular(15.r),
+                        gradient: LinearGradient(
+                            colors: [
+                              context.colorScheme.secondary,
+                              context.colorScheme.primary,
+                            ],
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight),
+                      ),
                       child: MaterialButton(
                         onPressed: () {
                           //  Navigator.pop(context);
-                          if (state.filteredRestaurants.isNotEmpty&&state.selectedDistance==null) {
-                            AppNavigation.navigationTo(
-                                context,
-                                SearchResultScreen(
-                                  content: PopularRestaurantList(
-                                    filteredRestaurant:
-                                        state.filteredRestaurants,
-                                  ),
-                                  text: " Popular Restaurant",
-                                ));
-                          } else if (state.filteredMenu.isNotEmpty) {
+                          if (searchState.selectedFoodItems.isNotEmpty) {
                             AppNavigation.navigationTo(
                                 context,
                                 SearchResultScreen(
                                   content: PopularMenuList(
-                                    filteredMenu: state.filteredMenu,
+                                    filteredMenu: searchState.filteredMenu
+                                        .where((menuItem) => searchState
+                                            .selectedFoodItems
+                                            .contains(menuItem.menu.name))
+                                        .toList(),
                                   ),
-                                  text: " Popular Menu",
+                                  text:
+                                      "Popular Menu",
                                 ));
-                          }
-                          else if(state.filteredRestaurants.isNotEmpty&&state.selectedDistance!=null){
+                          } else if (searchState
+                                  .filteredRestaurants.isNotEmpty &&
+                              searchState.selectedDistance == null) {
                             AppNavigation.navigationTo(
                                 context,
                                 SearchResultScreen(
                                   content: PopularRestaurantList(
                                     filteredRestaurant:
-                                    state.filteredRestaurants,
-                                    selectedDistance: state.selectedDistance,
+                                        searchState.filteredRestaurants,
+                                  ),
+                                  text: " Popular Restaurant",
+                                ));
+                          } else if (searchState.filteredMenu.isNotEmpty) {
+                            AppNavigation.navigationTo(
+                                context,
+                                SearchResultScreen(
+                                  content: PopularMenuList(
+                                    filteredMenu: searchState.filteredMenu,
+                                  ),
+                                  text: " Popular Menu",
+                                ));
+                          } else if (searchState
+                                  .filteredRestaurants.isNotEmpty &&
+                              searchState.selectedDistance != null) {
+                            AppNavigation.navigationTo(
+                                context,
+                                SearchResultScreen(
+                                  content: PopularRestaurantList(
+                                    filteredRestaurant:
+                                        searchState.filteredRestaurants,
+                                    selectedDistance:
+                                        searchState.selectedDistance,
                                   ),
                                   text: " Nearest Restaurant",
                                 ));
-                          }
-                          else {
+                          } else {
                             AppNavigation.navigationTo(
                               context,
                               SearchResultScreen(

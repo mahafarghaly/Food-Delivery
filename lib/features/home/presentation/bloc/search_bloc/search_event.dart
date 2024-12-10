@@ -24,3 +24,8 @@ class SelectDistanceEvent extends SearchEvent {
 
   const SelectDistanceEvent(this.distance);
 }
+class FilterFoodItemEvent extends SearchEvent {
+  final String foodItemName;
+
+  const FilterFoodItemEvent(this.foodItemName);
+}
