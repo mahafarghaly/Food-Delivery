@@ -1,6 +1,4 @@
 import 'package:equatable/equatable.dart';
-
-import '../../../../base/data/helpers/request_state.dart';
 import '../../../data/model/menu_with_restaurant.dart';
 import '../../../data/model/restaurant.dart';
 
@@ -8,7 +6,7 @@ class SearchState extends Equatable {
   final List<Restaurant> filteredRestaurants;
   final List<MenuWithRestaurant> filteredMenu;
   final String selectedChipType;
-  final double? selectedDistance;
+  final num? selectedDistance;
 
   const SearchState({
     this.filteredMenu = const [],

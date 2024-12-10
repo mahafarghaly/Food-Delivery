@@ -102,13 +102,4 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       ) {
     emit(state.copyWith(selectedDistance: event.distance));
   }
-  bool _isWithinDistance(double? lat2, double? lon2, double maxDistance) {
-    if (lat2 == null || lon2 == null) return false;
-
-    double userLat = 0.0; // Replace with the current user's latitude
-    double userLon = 0.0; // Replace with the current user's longitude
-
-    double distance = calculateDistance(userLat, userLon, lat2, lon2);
-    return distance <= maxDistance;
-  }
 }

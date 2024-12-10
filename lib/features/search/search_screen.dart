@@ -10,6 +10,7 @@ import 'package:food_app/features/home/presentation/bloc/search_bloc/search_stat
 import 'package:food_app/features/home/presentation/views/screens/home_screen.dart';
 import 'package:food_app/features/home/presentation/views/widgets/custom_chip.dart';
 import 'package:food_app/features/home/presentation/views/widgets/home_appbar_section.dart';
+import 'package:food_app/features/home/presentation/views/widgets/lists/nearest_restaurant.dart';
 import 'package:food_app/features/home/presentation/views/widgets/lists/popular_menu_list.dart';
 import 'package:food_app/features/home/presentation/views/widgets/lists/popular_restaurant_list.dart';
 import 'package:food_app/features/search/search_result_screen.dart';
@@ -131,7 +132,7 @@ class SearchScreen extends StatelessWidget {
                       child: MaterialButton(
                         onPressed: () {
                           //  Navigator.pop(context);
-                          if (state.filteredRestaurants.isNotEmpty) {
+                          if (state.filteredRestaurants.isNotEmpty&&state.selectedDistance==null) {
                             AppNavigation.navigationTo(
                                 context,
                                 SearchResultScreen(
@@ -150,7 +151,20 @@ class SearchScreen extends StatelessWidget {
                                   ),
                                   text: " Popular Menu",
                                 ));
-                          } else {
+                          }
+                          else if(state.filteredRestaurants.isNotEmpty&&state.selectedDistance!=null){
+                            AppNavigation.navigationTo(
+                                context,
+                                SearchResultScreen(
+                                  content: NearestRestaurantList(
+                                    filteredRestaurant:
+                                    state.filteredRestaurants,
+                                    selectedDistance: state.selectedDistance,
+                                  ),
+                                  text: " Nearest Restaurant",
+                                ));
+                          }
+                          else {
                             AppNavigation.navigationTo(
                               context,
                               SearchResultScreen(
