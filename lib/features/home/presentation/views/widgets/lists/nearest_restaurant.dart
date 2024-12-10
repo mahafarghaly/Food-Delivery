@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_app/features/base/data/helpers/request_state.dart';
-import 'package:food_app/features/home/data/model/restaurant.dart';
 import 'package:food_app/features/home/presentation/bloc/restaurant_bloc/restaurant_bloc.dart';
 import 'package:food_app/features/home/presentation/bloc/restaurant_bloc/restaurant_state.dart';
 import 'package:food_app/features/home/presentation/views/widgets/restaurant_item.dart';
@@ -10,9 +9,7 @@ import '../../../../../../core/utils/calculate_distance.dart';
 import '../../../../../base/presentation/bloc/app_bloc.dart';
 import '../../../../../base/presentation/bloc/app_state.dart';
 class NearestRestaurantList extends StatelessWidget {
-  const NearestRestaurantList({super.key, this.selectedDistance, this.filteredRestaurant});
-  final num? selectedDistance;
-  final List<Restaurant>? filteredRestaurant;
+  const NearestRestaurantList({super.key});
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AppBloc, AppState>(
@@ -34,22 +31,16 @@ class NearestRestaurantList extends StatelessWidget {
                   ),
                 );
               case RequestState.loaded:
-                final filteredRestaurants =filteredRestaurant!=null?filteredRestaurant!.where((restaurant) {
+                final filteredRestaurants = state.restaurants.where((restaurant) {
                   final distance = calculateDistance(
-                    userLat!,
-                    userLon!,
+                    userLat??
+                        30.894228,
+                    userLon??
+                        30.611446,
                     restaurant.lat!,
                     restaurant.long!,
                   );
-                  return distance <= (selectedDistance??10);
-                }).toList(): state.restaurants.where((restaurant) {
-                  final distance = calculateDistance(
-                    userLat?? 30.894228,
-                    userLon?? 30.611446,
-                    restaurant.lat!,
-                    restaurant.long!,
-                  );
-                  return distance <= (selectedDistance??10);
+                  return distance <= 10; // 10 km radius
                 }).toList();
                 final itemCount = state.showNearestR
                     ? filteredRestaurants.length

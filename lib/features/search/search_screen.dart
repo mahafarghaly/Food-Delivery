@@ -18,6 +18,7 @@ import 'package:food_app/features/search/search_result_screen.dart';
 import '../../core/service/service_locator.dart';
 import '../../core/utils/app_assets.dart';
 import '../home/presentation/bloc/search_bloc/search_event.dart';
+
 class SearchScreen extends StatelessWidget {
   const SearchScreen({super.key});
 
@@ -100,10 +101,10 @@ class SearchScreen extends StatelessWidget {
                                   ).paddingRight(10.w),
                                   CustomChip(
                                     label: "<10 KM",
-                                    isSelected:  state.selectedDistance == 50.0,
+                                    isSelected:  state.selectedDistance == 80.0,
                                     onTap: () {
                                       context
-                                          .read<SearchBloc>().add(SelectDistanceEvent(50.0));
+                                          .read<SearchBloc>().add(SelectDistanceEvent(80.0));
                                     },
                                   )
                                 ],
@@ -156,7 +157,7 @@ class SearchScreen extends StatelessWidget {
                             AppNavigation.navigationTo(
                                 context,
                                 SearchResultScreen(
-                                  content: NearestRestaurantList(
+                                  content: PopularRestaurantList(
                                     filteredRestaurant:
                                     state.filteredRestaurants,
                                     selectedDistance: state.selectedDistance,
