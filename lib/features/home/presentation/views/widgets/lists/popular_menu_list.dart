@@ -33,9 +33,7 @@ class PopularMenuList extends StatelessWidget {
             final restaurants = state.restaurants;
             final popularMenuItems = filteredMenu != null
                 ? filteredMenu!.map((menuItem) {
-                  if(selectedDistance!=null){
-
-                  }
+                    if (selectedDistance != null) {}
                     return MenuWithRestaurant(
                       menu: menuItem.menu,
                       restaurantName: menuItem.restaurantName,

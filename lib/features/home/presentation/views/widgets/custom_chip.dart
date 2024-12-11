@@ -14,9 +14,9 @@ final String label;
         label: Text(
           label,
           style: context.textTheme.labelMedium?.copyWith(
-            color:  isSelected
-                ? context.colorScheme.onPrimaryContainer
-                : Colors.grey,//context.colorScheme.onPrimaryContainer
+            color:
+           // isSelected ? context.colorScheme.onPrimaryContainer:
+            context.colorScheme.onPrimaryContainer
           )
         ),
         backgroundColor: Colors.orange.withOpacity(0.1),
@@ -26,7 +26,9 @@ final String label;
                 color: Colors.orange.withOpacity(0.1)
             )
         ),
-
+onDeleted: isSelected?(){}:null,
+        deleteIconColor:context.colorScheme.onPrimaryContainer ,
+        deleteIcon: const Icon(Icons.close),
       ),
     );
   }
