@@ -102,9 +102,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     emit(state.copyWith(selectedChipType: event.chipLabel));
   }
 
-  void _onSelectDistance(
-    SelectDistanceEvent event,
-    Emitter<SearchState> emit,
+  void _onSelectDistance(SelectDistanceEvent event, Emitter<SearchState> emit,
   ) {
     emit(state.copyWith(selectedDistance: event.distance));
   }
