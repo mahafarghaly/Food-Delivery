@@ -187,6 +187,7 @@ class SearchScreen extends StatelessWidget {
                       ),
                     ),
                   ),
+
                   // Container(
                   //     clipBehavior: Clip.antiAliasWithSaveLayer,
                   //     width: double.infinity,

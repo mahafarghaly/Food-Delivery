@@ -18,6 +18,7 @@ final String label;
             color:
            isSelected ? context.colorScheme.onPrimaryContainer:Colors.grey
            // context.colorScheme.onPrimaryContainer
+
           )
         ),
         backgroundColor: Colors.orange.withOpacity(0.1),
@@ -27,7 +28,8 @@ final String label;
                 color: Colors.orange.withOpacity(0.1)
             )
         ),
-onDeleted: isSelected?onDelete:null,
+
+onDeleted: isSelected?(){}:null,
         deleteIconColor:context.colorScheme.onPrimaryContainer ,
         deleteIcon: const Icon(Icons.close),
       ),

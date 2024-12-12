@@ -164,8 +164,7 @@ class PopularMenuList extends StatelessWidget {
                         lat: 0.0,
                         long: 0.0,
                         menu: [],
-                      ),
-                    );
+                      ),);
                     if (restaurant.name=="") {
                       final distance = calculateDistance(
                         userLat ?? 0.0,
