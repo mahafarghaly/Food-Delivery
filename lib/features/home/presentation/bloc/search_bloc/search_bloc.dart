@@ -99,15 +99,29 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   }
 
   void _onSelectChipType(SelectChipEvent event, Emitter<SearchState> emit) {
-    emit(state.copyWith(selectedChipType: event.chipLabel));
+   // emit(state.copyWith(selectedChipType: event.chipLabel));
+    final currentSelectedChip = state.selectedChipType;
+
+    if (currentSelectedChip == event.chipLabel) {
+      emit(state.copyWith(selectedChipType: null));
+    } else {
+      emit(state.copyWith(selectedChipType: event.chipLabel));
+    }
   }
 
   void _onSelectDistance(SelectDistanceEvent event, Emitter<SearchState> emit,
   ) {
-    emit(state.copyWith(selectedDistance: event.distance));
+    final selectedDistance = state.selectedDistance;
+    if(selectedDistance==event.distance){
+      emit(state.copyWith(selectedDistance: null));
+    }else{
+      emit(state.copyWith(selectedDistance: event.distance));
+    }
+
+
   }
   void _onSelectFoodItem(FilterFoodItemEvent event, Emitter<SearchState> emit) {
-    final currentSelected = List<String>.from(state.selectedFoodItems??[]);
+    final currentSelected = List<String>.from(state.selectedFoodItems);
 
     if (currentSelected.contains(event.foodItemName)) {
       currentSelected.remove(event.foodItemName);

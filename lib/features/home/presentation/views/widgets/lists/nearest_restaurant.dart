@@ -33,10 +33,8 @@ class NearestRestaurantList extends StatelessWidget {
               case RequestState.loaded:
                 final filteredRestaurants = state.restaurants.where((restaurant) {
                   final distance = calculateDistance(
-                    userLat??
-                        30.894228,
-                    userLon??
-                        30.611446,
+                    userLat??0,
+                    userLon??0,
                     restaurant.lat!,
                     restaurant.long!,
                   );
@@ -48,7 +46,11 @@ class NearestRestaurantList extends StatelessWidget {
 
                 return SizedBox(
                   height: 184.h,
-                  child: ListView.builder(
+                  child:  filteredRestaurants.isEmpty
+                      ? const Center(
+                    child: Text("No Nearest restaurants available."),
+                  )
+                      :ListView.builder(
                       scrollDirection: Axis.horizontal,
                       itemCount:itemCount,
                       itemBuilder: (context, index) =>  RestaurantItem(name:"${filteredRestaurants[index].name}",image:"${filteredRestaurants[index].imageUrl}" ,)),

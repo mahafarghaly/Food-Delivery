@@ -20,7 +20,7 @@ class SelectChipEvent extends SearchEvent {
 }
 
 class SelectDistanceEvent extends SearchEvent {
-  final double distance;
+  final num? distance;
 
   const SelectDistanceEvent(this.distance);
 }

@@ -21,7 +21,7 @@ class SearchState extends Equatable {
     List<Restaurant>? filteredRestaurants,
     List<MenuWithRestaurant>? filteredMenu,
     String? selectedChipType,
-    double? selectedDistance,
+    num? selectedDistance,
     List<String>? selectedFoodItems,
   }) {
     return SearchState(

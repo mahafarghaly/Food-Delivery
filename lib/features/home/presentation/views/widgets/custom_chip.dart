@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:food_app/core/exenstions/context_extenstion.dart';
 
 class CustomChip extends StatelessWidget {
-  const CustomChip({super.key, required this.label, required this.isSelected, required this.onTap});
+  const CustomChip({super.key, required this.label, required this.isSelected, required this.onTap, this.onDelete});
 final String label;
   final bool isSelected;
   final VoidCallback onTap;
+  final VoidCallback? onDelete;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -15,8 +16,8 @@ final String label;
           label,
           style: context.textTheme.labelMedium?.copyWith(
             color:
-           // isSelected ? context.colorScheme.onPrimaryContainer:
-            context.colorScheme.onPrimaryContainer
+           isSelected ? context.colorScheme.onPrimaryContainer:Colors.grey
+           // context.colorScheme.onPrimaryContainer
           )
         ),
         backgroundColor: Colors.orange.withOpacity(0.1),
@@ -26,7 +27,7 @@ final String label;
                 color: Colors.orange.withOpacity(0.1)
             )
         ),
-onDeleted: isSelected?(){}:null,
+onDeleted: isSelected?onDelete:null,
         deleteIconColor:context.colorScheme.onPrimaryContainer ,
         deleteIcon: const Icon(Icons.close),
       ),

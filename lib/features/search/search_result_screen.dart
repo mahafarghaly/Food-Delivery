@@ -28,7 +28,6 @@ final String? text;
             builder: (BuildContext context, RestaurantsState state) {
               state.showPRestaurants = true;
               state.showPMenu= true;
-              state.showPRestaurants= true;
              return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 const HomeAppbarSection().paddingTop(60.h),
                 SizedBox(height: 20.h,),
