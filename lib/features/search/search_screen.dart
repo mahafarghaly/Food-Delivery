@@ -298,12 +298,13 @@ class SearchScreen extends StatelessWidget {
                                             .selectedFoodItems
                                             .contains(menuItem.menu.name))
                                         .toList(),
-                                    selectedDistance:
-                                        searchState.selectedDistance,
+                                    selectedDistance: searchState.selectedDistance==0?null:searchState.selectedDistance,
+
                                   ),
                                   text: "Popular Menu",
                                 ));
-                          } else if (searchState
+                          }
+                          else if (searchState
                               .filteredRestaurants.isNotEmpty) {
                             AppNavigation.navigationTo(
                                 context,
@@ -311,18 +312,19 @@ class SearchScreen extends StatelessWidget {
                                   content: PopularRestaurantList(
                                     filteredRestaurant:
                                         searchState.filteredRestaurants,
-                                    //selectedDistance: searchState.selectedDistance,
+                                    selectedDistance: searchState.selectedDistance==0?null:searchState.selectedDistance,
                                   ),
                                   text: " Popular Restaurant",
                                 ));
-                          } else if (searchState.filteredMenu.isNotEmpty) {
+                          }
+                          else if (searchState.filteredMenu.isNotEmpty) {
                             AppNavigation.navigationTo(
                                 context,
                                 SearchResultScreen(
                                   content: PopularMenuList(
                                     filteredMenu: searchState.filteredMenu,
-                                    selectedDistance:
-                                        searchState.selectedDistance,
+                                    selectedDistance: searchState.selectedDistance==0?null:searchState.selectedDistance,
+
                                   ),
                                   text: " Popular Menu",
                                 ));

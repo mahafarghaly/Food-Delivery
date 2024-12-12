@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:food_app/core/exenstions/context_extenstion.dart';
 import 'package:food_app/features/base/data/helpers/request_state.dart';
 import 'package:food_app/features/base/presentation/bloc/app_bloc.dart';
 import 'package:food_app/features/base/presentation/bloc/app_state.dart';
@@ -11,7 +10,6 @@ import 'package:food_app/features/home/presentation/bloc/restaurant_bloc/restaur
 import 'package:food_app/features/home/presentation/views/widgets/menu_item.dart';
 
 import '../../../../../../core/utils/calculate_distance.dart';
-import '../../../../data/model/menu.dart';
 import '../../../../data/model/restaurant.dart';
 
 // class PopularMenuList extends StatelessWidget {
@@ -160,12 +158,12 @@ class PopularMenuList extends StatelessWidget {
                     final restaurant = restaurants.firstWhere(
                           (r) => r.name == menuItem.restaurantName,
                       orElse: () => Restaurant(
-                        name: "",
+                        name: null,
                         lat: 0.0,
                         long: 0.0,
                         menu: [],
                       ),);
-                    if (restaurant.name=="") {
+                    if (restaurant.name!=null) {
                       final distance = calculateDistance(
                         userLat ?? 0.0,
                         userLon ?? 0.0,
@@ -176,7 +174,8 @@ class PopularMenuList extends StatelessWidget {
                           distance <= selectedDistance!;
                     }
                     return false;
-                  } else {
+                  }
+                  else {
                     return (menuItem.menu.rate ?? 0) >= 4.0;
                   }
                 })
