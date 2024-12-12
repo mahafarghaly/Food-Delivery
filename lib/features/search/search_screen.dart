@@ -302,6 +302,8 @@ class SearchScreen extends StatelessWidget {
 
                                   ),
                                   text: "Popular Menu",
+                                  selectedDistance: searchState.selectedDistance,
+                                    selectedFoodItems: searchState.selectedFoodItems,
                                 ));
                           }
                           else if (searchState
@@ -315,6 +317,8 @@ class SearchScreen extends StatelessWidget {
                                     selectedDistance: searchState.selectedDistance==0?null:searchState.selectedDistance,
                                   ),
                                   text: " Popular Restaurant",
+                                  selectedDistance: searchState.selectedDistance,
+                                  selectedFoodItems: searchState.selectedFoodItems,
                                 ));
                           }
                           else if (searchState.filteredMenu.isNotEmpty) {
@@ -327,6 +331,8 @@ class SearchScreen extends StatelessWidget {
 
                                   ),
                                   text: " Popular Menu",
+                                  selectedDistance: searchState.selectedDistance,
+                                  selectedFoodItems: searchState.selectedFoodItems,
                                 ));
                           } else {
                             AppNavigation.navigationTo(
