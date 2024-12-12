@@ -62,12 +62,12 @@ class SearchScreen extends StatelessWidget {
                                         "Restaurant",
                                     onTap: () {
                                       context.read<SearchBloc>().add(
-                                          const SelectChipEvent("Restaurant"));
+                                          const SelectTypeEvent("Restaurant"));
                                     },
                                     onDelete: () {
                                       context
                                           .read<SearchBloc>()
-                                          .add(const SelectChipEvent(""));
+                                          .add(const SelectTypeEvent(""));
                                     },
                                   ),
                                   SizedBox(width: 10.h),
@@ -78,12 +78,12 @@ class SearchScreen extends StatelessWidget {
                                     onTap: () {
                                       context
                                           .read<SearchBloc>()
-                                          .add(const SelectChipEvent("Menu"));
+                                          .add(const SelectTypeEvent("Menu"));
                                     },
                                     onDelete: () {
                                       context
                                           .read<SearchBloc>()
-                                          .add(const SelectChipEvent(""));
+                                          .add(const SelectTypeEvent(""));
                                     },
                                   ),
                                 ],

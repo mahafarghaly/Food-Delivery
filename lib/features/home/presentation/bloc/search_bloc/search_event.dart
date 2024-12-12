@@ -13,10 +13,10 @@ class SearchRestaurantEvent extends SearchEvent {
   const SearchRestaurantEvent(this.query);
 }
 
-class SelectChipEvent extends SearchEvent {
+class SelectTypeEvent extends SearchEvent {
   final String chipLabel;
 
-  const SelectChipEvent(this.chipLabel);
+  const SelectTypeEvent(this.chipLabel);
 }
 
 class SelectDistanceEvent extends SearchEvent {

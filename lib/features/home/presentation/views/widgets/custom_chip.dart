@@ -29,7 +29,7 @@ final String label;
             )
         ),
 
-onDeleted: isSelected?(){}:null,
+onDeleted: isSelected?onDelete:null,
         deleteIconColor:context.colorScheme.onPrimaryContainer ,
         deleteIcon: const Icon(Icons.close),
       ),

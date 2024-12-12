@@ -13,7 +13,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
   SearchBloc(this.restaurantBloc) : super(const SearchState()) {
     on<SearchRestaurantEvent>(_onSearchRestaurants);
-    on<SelectChipEvent>(_onSelectChipType);
+    on<SelectTypeEvent>(_onSelectChipType);
     on<SelectDistanceEvent>(_onSelectDistance);
     restaurantBloc.add(GetRestaurants());
     on<FilterFoodItemEvent>(_onSelectFoodItem);
@@ -98,7 +98,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
     }
   }
 
-  void _onSelectChipType(SelectChipEvent event, Emitter<SearchState> emit) {
+  void _onSelectChipType(SelectTypeEvent event, Emitter<SearchState> emit) {
    // emit(state.copyWith(selectedChipType: event.chipLabel));
     final currentSelectedChip = state.selectedChipType;
 
