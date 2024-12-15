@@ -12,9 +12,9 @@ class SearchState extends Equatable {
   const SearchState({
     this.filteredMenu = const [],
     this.filteredRestaurants = const [],
-        this.selectedChipType = "",
-        this.selectedDistance,
-    this.selectedFoodItems= const [],
+    this.selectedChipType = "",
+    this.selectedDistance,
+    this.selectedFoodItems = const [],
   });
 
   SearchState copyWith({
@@ -27,13 +27,19 @@ class SearchState extends Equatable {
     return SearchState(
       filteredRestaurants: filteredRestaurants ?? this.filteredRestaurants,
       filteredMenu: filteredMenu ?? this.filteredMenu,
-        selectedChipType: selectedChipType ?? this.selectedChipType,
-        selectedDistance:selectedDistance??this.selectedDistance,
-      selectedFoodItems: selectedFoodItems??this.selectedFoodItems,
+      selectedChipType: selectedChipType ?? this.selectedChipType,
+      selectedDistance: selectedDistance ?? this.selectedDistance,
+      selectedFoodItems: selectedFoodItems ?? this.selectedFoodItems,
     );
   }
 
   @override
   // TODO: implement props
-  List<Object?> get props => [filteredRestaurants, filteredMenu,selectedDistance,selectedChipType,selectedFoodItems];
+  List<Object?> get props => [
+        filteredRestaurants,
+        filteredMenu,
+        selectedDistance,
+        selectedChipType,
+        selectedFoodItems,
+      ];
 }

@@ -187,90 +187,6 @@ class SearchScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-
-                  // Container(
-                  //     clipBehavior: Clip.antiAliasWithSaveLayer,
-                  //     width: double.infinity,
-                  //     height: 57.h,
-                  //     decoration: BoxDecoration(
-                  //       borderRadius: BorderRadius.circular(15.r),
-                  //       gradient: LinearGradient(
-                  //           colors: [
-                  //             context.colorScheme.secondary,
-                  //             context.colorScheme.primary,
-                  //           ],
-                  //           begin: Alignment.topLeft,
-                  //           end: Alignment.bottomRight),
-                  //     ),
-                  //     child: MaterialButton(
-                  //       onPressed: () {
-                  //         //  Navigator.pop(context);
-                  //         if (searchState.selectedFoodItems.isNotEmpty||(searchState.selectedFoodItems.isNotEmpty &&
-                  //             searchState.selectedDistance != null)) {
-                  //           print("searchState.selectedDistance: ${searchState.selectedDistance}");
-                  //           AppNavigation.navigationTo(
-                  //               context,
-                  //               SearchResultScreen(
-                  //                 content: PopularMenuList(
-                  //                   filteredMenu: searchState.filteredMenu
-                  //                       .where((menuItem) => searchState
-                  //                           .selectedFoodItems
-                  //                           .contains(menuItem.menu.name))
-                  //                       .toList(),
-                  //                   selectedDistance: searchState.selectedDistance,
-                  //                 ),
-                  //                 text:
-                  //                     "Popular Menu",
-                  //               ));
-                  //         }
-                  //         else if (searchState
-                  //             .filteredRestaurants.isNotEmpty||(searchState
-                  //                 .filteredRestaurants.isNotEmpty &&
-                  //             searchState.selectedDistance != null)) {
-                  //           AppNavigation.navigationTo(
-                  //               context,
-                  //               SearchResultScreen(
-                  //                 content: PopularRestaurantList(
-                  //                   filteredRestaurant:
-                  //                       searchState.filteredRestaurants,
-                  //                   selectedDistance: searchState.selectedDistance,
-                  //                 ),
-                  //                 text:searchState.selectedDistance!=null?"Nearest Restaurant":" Popular Restaurant",
-                  //               ));
-                  //         } else if (searchState.filteredMenu.isNotEmpty||(searchState.filteredMenu.isNotEmpty&&
-                  //             searchState.selectedDistance != null)) {
-                  //           print("searchState.selectedDistance res: ${searchState.selectedDistance}");
-                  //
-                  //           AppNavigation.navigationTo(
-                  //               context,
-                  //               SearchResultScreen(
-                  //                 content: PopularMenuList(
-                  //                   filteredMenu: searchState.filteredMenu,
-                  //                   selectedDistance: searchState.selectedDistance,
-                  //                 ),
-                  //                   text:searchState.selectedDistance != null?"Nearest Menu":"Popular Menu" ,
-                  //               ));
-                  //         } else {
-                  //           AppNavigation.navigationTo(
-                  //             context,
-                  //             SearchResultScreen(
-                  //               content: Center(
-                  //                 child: Text(
-                  //                   "Not Found",
-                  //                   style: context.textTheme.bodyLarge,
-                  //                 ),
-                  //               ),
-                  //             ),
-                  //           );
-                  //         }
-                  //       },
-                  //       child: Text(
-                  //         "Search",
-                  //         style: context.textTheme.bodyLarge?.copyWith(
-                  //             fontSize: 14.sp,
-                  //             color: context.colorScheme.surface),
-                  //       ),
-                  //     )).paddingAll(25),
                   Container(
                       clipBehavior: Clip.antiAliasWithSaveLayer,
                       width: double.infinity,
@@ -291,59 +207,29 @@ class SearchScreen extends StatelessWidget {
                           if (searchState.selectedFoodItems.isNotEmpty) {
                             AppNavigation.navigationTo(
                                 context,
-                                SearchResultScreen(
-                                  content: PopularMenuList(
-                                    filteredMenu: searchState.filteredMenu
-                                        .where((menuItem) => searchState
-                                            .selectedFoodItems
-                                            .contains(menuItem.menu.name))
-                                        .toList(),
-                                    selectedDistance: searchState.selectedDistance==0?null:searchState.selectedDistance,
-
-                                  ),
+                                const SearchResultScreen(
                                   text: "Popular Menu",
-                                  selectedDistance: searchState.selectedDistance,
-                                    selectedFoodItems: searchState.selectedFoodItems,
                                 ));
                           }
                           else if (searchState
                               .filteredRestaurants.isNotEmpty) {
                             AppNavigation.navigationTo(
                                 context,
-                                SearchResultScreen(
-                                  content: PopularRestaurantList(
-                                    filteredRestaurant:
-                                        searchState.filteredRestaurants,
-                                    selectedDistance: searchState.selectedDistance==0?null:searchState.selectedDistance,
-                                  ),
+                                const SearchResultScreen(
                                   text: " Popular Restaurant",
-                                  selectedDistance: searchState.selectedDistance,
-                                  selectedFoodItems: searchState.selectedFoodItems,
                                 ));
                           }
                           else if (searchState.filteredMenu.isNotEmpty) {
                             AppNavigation.navigationTo(
                                 context,
-                                SearchResultScreen(
-                                  content: PopularMenuList(
-                                    filteredMenu: searchState.filteredMenu,
-                                    selectedDistance: searchState.selectedDistance==0?null:searchState.selectedDistance,
-
-                                  ),
+                                const SearchResultScreen(
                                   text: " Popular Menu",
-                                  selectedDistance: searchState.selectedDistance,
-                                  selectedFoodItems: searchState.selectedFoodItems,
                                 ));
-                          } else {
+                          }
+                          else {
                             AppNavigation.navigationTo(
                               context,
-                              SearchResultScreen(
-                                content: Center(
-                                  child: Text(
-                                    "Not Found",
-                                    style: context.textTheme.bodyLarge,
-                                  ),
-                                ),
+                              const SearchResultScreen(
                               ),
                             );
                           }
