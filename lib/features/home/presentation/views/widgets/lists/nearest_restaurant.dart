@@ -57,7 +57,7 @@ class NearestRestaurantList extends StatelessWidget {
                 );
               case RequestState.error:
                 return Center(
-                  child: Text(state.restaurantsMessage),
+                  child: Expanded(child: Text(state.restaurantsMessage,overflow: TextOverflow.ellipsis,)),
                 );
             }
         

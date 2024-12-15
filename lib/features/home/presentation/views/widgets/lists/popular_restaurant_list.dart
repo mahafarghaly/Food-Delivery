@@ -2,10 +2,10 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:food_app/core/utils/app_assets.dart';
 import 'package:food_app/features/base/presentation/bloc/app_bloc.dart';
 import 'package:food_app/features/base/presentation/bloc/app_state.dart';
 import 'package:food_app/features/home/data/model/restaurant.dart';
-
 import '../../../../../../core/utils/calculate_distance.dart';
 import '../../../../../base/data/helpers/request_state.dart';
 import '../../../bloc/restaurant_bloc/restaurant_bloc.dart';
@@ -84,9 +84,7 @@ class PopularRestaurantList extends StatelessWidget {
                   );
 
                 case RequestState.error:
-                  return Center(
-                    child: Text(state.restaurantsMessage),
-                  );
+                  return Expanded(child: Text(state.restaurantsMessage));
               }
             });
       },

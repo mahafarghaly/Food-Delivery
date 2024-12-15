@@ -23,7 +23,9 @@ final String? image;
           mainAxisAlignment: MainAxisAlignment.center,
 
           children: [
-            Image.network(image!,height: 90.h,width: 90.w,fit: BoxFit.cover,).paddingHorizontal(26.w),
+            image!=null?
+            Image.network(image!,height: 90.h,width: 90.w,fit: BoxFit.cover,).paddingHorizontal(26.w):
+            Image.asset(AppAssets.testImage),
             Text(name??"not found",style:context.textTheme.labelLarge,).paddingTop(10),
             SizedBox(height: 4.h,),
             Text("10 Min",style: context.textTheme.labelSmall?.copyWith(

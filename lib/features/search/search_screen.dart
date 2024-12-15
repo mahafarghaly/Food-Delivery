@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:food_app/app.dart';
 import 'package:food_app/core/exenstions/context_extenstion.dart';
 import 'package:food_app/core/exenstions/widget_extensions.dart';
 import 'package:food_app/core/utils/app_navigation.dart';
@@ -9,15 +8,9 @@ import 'package:food_app/features/home/presentation/bloc/restaurant_bloc/restaur
 import 'package:food_app/features/home/presentation/bloc/restaurant_bloc/restaurant_state.dart';
 import 'package:food_app/features/home/presentation/bloc/search_bloc/search_bloc.dart';
 import 'package:food_app/features/home/presentation/bloc/search_bloc/search_state.dart';
-import 'package:food_app/features/home/presentation/views/screens/home_screen.dart';
 import 'package:food_app/features/home/presentation/views/widgets/custom_chip.dart';
 import 'package:food_app/features/home/presentation/views/widgets/home_appbar_section.dart';
-import 'package:food_app/features/home/presentation/views/widgets/lists/nearest_restaurant.dart';
-import 'package:food_app/features/home/presentation/views/widgets/lists/popular_menu_list.dart';
-import 'package:food_app/features/home/presentation/views/widgets/lists/popular_restaurant_list.dart';
 import 'package:food_app/features/search/search_result_screen.dart';
-
-import '../../core/service/service_locator.dart';
 import '../../core/utils/app_assets.dart';
 import '../home/presentation/bloc/search_bloc/search_event.dart';
 
@@ -168,7 +161,11 @@ class SearchScreen extends StatelessWidget {
                                                   FilterFoodItemEvent(
                                                       menuItem.name ?? ""));
                                             },
-                                            onDelete: () {},
+                                            onDelete: () {
+                                              context.read<SearchBloc>().add(
+                                                  FilterFoodItemEvent(
+                                                      menuItem.name ?? ""));
+                                            },
                                             isSelected: context
                                                 .read<SearchBloc>()
                                                 .state
@@ -210,27 +207,23 @@ class SearchScreen extends StatelessWidget {
                                 const SearchResultScreen(
                                   text: "Popular Menu",
                                 ));
-                          }
-                          else if (searchState
+                          } else if (searchState
                               .filteredRestaurants.isNotEmpty) {
                             AppNavigation.navigationTo(
                                 context,
                                 const SearchResultScreen(
                                   text: " Popular Restaurant",
                                 ));
-                          }
-                          else if (searchState.filteredMenu.isNotEmpty) {
+                          } else if (searchState.filteredMenu.isNotEmpty) {
                             AppNavigation.navigationTo(
                                 context,
                                 const SearchResultScreen(
                                   text: " Popular Menu",
                                 ));
-                          }
-                          else {
+                          } else {
                             AppNavigation.navigationTo(
                               context,
-                              const SearchResultScreen(
-                              ),
+                              const SearchResultScreen(),
                             );
                           }
                         },

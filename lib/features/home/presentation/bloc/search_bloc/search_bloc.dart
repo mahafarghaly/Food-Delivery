@@ -39,6 +39,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       emit(state.copyWith(
         filteredRestaurants: filteredRestaurant,
         filteredMenu: [],
+        selectedFoodItems: [],
       ));
     } else if (selectedChipType == "Menu") {
       filteredMenu = restaurantBloc.state.restaurants
@@ -57,6 +58,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
       emit(state.copyWith(
         filteredRestaurants: [],
+        selectedFoodItems: [],
         filteredMenu: filteredMenu,
       ));
     } else {
@@ -85,6 +87,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       emit(state.copyWith(
         filteredRestaurants: filteredRestaurant,
         filteredMenu: filteredMenu,
+        selectedFoodItems: [],
       ));
     }
 
@@ -141,9 +144,9 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
           .name ?? "Unknown",
     ))
         .toList();
-
     emit(state.copyWith(
-      filteredMenu: filteredMenu,
+      filteredMenu:filteredMenu,
+      filteredRestaurants: [],
       selectedFoodItems: currentSelected,
     ));
   }

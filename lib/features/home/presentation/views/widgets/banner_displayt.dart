@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_app/core/exenstions/context_extenstion.dart';
 import 'package:food_app/core/utils/app_assets.dart';
-
 class BannerDisplay extends StatelessWidget {
   const BannerDisplay({super.key});
 

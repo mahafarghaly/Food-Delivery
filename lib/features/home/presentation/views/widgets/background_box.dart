@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-
 class BackgroundBox extends StatelessWidget {
   const BackgroundBox({super.key, required this.color,required this.child, });
 final Widget child;

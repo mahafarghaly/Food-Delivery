@@ -15,9 +15,10 @@ final String? hintText;
 
   @override
   Widget build(BuildContext context) {
+    final TextEditingController controller = TextEditingController();
     return BackgroundBox(
       color: context.colorScheme.primaryContainer.withOpacity(0.1),
-      child: TextField(
+      child: TextFormField(
         enabled: enable,
         style: Theme.of(context).textTheme.bodyMedium,
         decoration:  InputDecoration(
@@ -27,6 +28,11 @@ final String? hintText;
           onChanged: (query) {
             context.read<SearchBloc>().add(SearchRestaurantEvent(query));
           },
+        onSaved: (value){
+
+        },
+        controller: controller,
+
 
       ),
     );

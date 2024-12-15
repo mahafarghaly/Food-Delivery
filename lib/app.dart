@@ -72,24 +72,29 @@ class FoodDeliveryApp extends StatelessWidget {
                         .read<AppBloc>()
                         .add(ChangeBottomNavIndexEvent(index));
                   },
-                  type: BottomNavigationBarType.fixed,
+                  type: BottomNavigationBarType.shifting,
+                  showSelectedLabels: false,
+
                   items: [
                     buildNavItem(
+                      context,
                       icon: Icons.home,
                       label: "Home",
                       isSelected: state.currentIndex == 0,
                     ),
                     buildNavItem(
+                      context,
                       icon: Icons.person,
                       label: "Profile",
                       isSelected: state.currentIndex == 1,
                     ),
                     buildNavItem(
+                      context,
                       icon: Icons.shopping_cart,
                       label: "Cart",
                       isSelected: state.currentIndex == 2,
                     ),
-                    buildNavItem(
+                    buildNavItem(context,
                       icon: Icons.chat,
                       label: "Chat",
                       isSelected: state.currentIndex == 3,
