@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:food_app/core/exenstions/context_extenstion.dart';
+import 'package:food_app/core/exenstions/widget_extensions.dart';
 import 'package:food_app/features/base/presentation/bloc/app_bloc.dart';
 import 'package:food_app/features/base/presentation/bloc/app_state.dart';
 import 'package:food_app/features/home/data/model/restaurant.dart';
@@ -58,8 +60,10 @@ class PopularRestaurantList extends StatelessWidget {
                       : (popularRestaurants.length > 3 ? 2 : popularRestaurants.length);
 
                   return popularRestaurants.isEmpty
-                      ? const Center(
-                    child: Text("No popular restaurants available."),
+                      ?  Center(
+                    child: Text("No popular restaurants available.",style:context.textTheme.bodyMedium?.copyWith(
+                      color: context.colorScheme.outlineVariant,
+                    ),).paddingTop(100.h),
                   )
                       : GridView.builder(
                     padding: EdgeInsets.symmetric(horizontal: 10.w),

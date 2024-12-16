@@ -221,17 +221,21 @@ class SearchScreen extends StatelessWidget {
                                   text: " Popular Menu",
                                 ));
                           } else {
-                            AppNavigation.navigationTo(
-                              context,
-                              const SearchResultScreen(),
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                backgroundColor:
+                                    context.colorScheme.onPrimaryContainer,
+                                content: const Text(
+                                    "No results found. Please try a different search!"),
+                                duration: const Duration(seconds: 2),
+                              ),
                             );
                           }
                         },
                         child: Text(
                           "Search",
-                          style: context.textTheme.bodyLarge?.copyWith(
-                              fontSize: 14.sp,
-                              color:Colors.white),
+                          style: context.textTheme.bodyLarge
+                              ?.copyWith(fontSize: 14.sp, color: Colors.white),
                         ),
                       )).paddingAll(25),
                 ],

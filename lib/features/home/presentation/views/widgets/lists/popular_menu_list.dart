@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:food_app/core/exenstions/context_extenstion.dart';
 import 'package:food_app/core/exenstions/widget_extensions.dart';
 import 'package:food_app/features/base/data/helpers/request_state.dart';
 import 'package:food_app/features/base/presentation/bloc/app_bloc.dart';
@@ -26,7 +27,6 @@ class PopularMenuList extends StatelessWidget {
 
         return BlocBuilder<RestaurantsBloc, RestaurantsState>(
           builder: (BuildContext context, RestaurantsState state) {
-            print("selected distance****::$selectedDistance");
             switch (state.restaurantsState) {
               case RequestState.loading:
                 return const Center(
@@ -79,8 +79,10 @@ class PopularMenuList extends StatelessWidget {
                     : (popularMenuItems.length > 3 ? 2 : popularMenuItems.length);
 
                 return popularMenuItems.isEmpty
-                    ? const Center(
-                  child: Text("No popular menu items available."),
+                    ?  Center(
+                  child:  Text("No popular menu items available.",style:context.textTheme.bodyMedium?.copyWith(
+                    color: context.colorScheme.outlineVariant,
+                  ),).paddingTop(100.h),
                 )
                     : ListView.builder(
                      shrinkWrap: true,

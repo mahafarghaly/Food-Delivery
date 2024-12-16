@@ -2,8 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:food_app/features/home/presentation/bloc/restaurant_bloc/restaurant_bloc.dart';
 import 'package:food_app/features/home/presentation/bloc/search_bloc/search_event.dart';
 import 'package:food_app/features/home/presentation/bloc/search_bloc/search_state.dart';
-
-import '../../../../../core/utils/calculate_distance.dart';
 import '../../../data/model/menu_with_restaurant.dart';
 import '../../../data/model/restaurant.dart';
 import '../restaurant_bloc/restaurant_event.dart';
@@ -28,8 +26,6 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
     List<Restaurant> filteredRestaurant = [];
     List<MenuWithRestaurant> filteredMenu = [];
-    print("RestaurantsBloc State****///: ${restaurantBloc.state.restaurants}");
-
     if (selectedChipType == "Restaurant") {
       filteredRestaurant = restaurantBloc.state.restaurants
           .where((restaurant) =>
@@ -90,19 +86,9 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
         selectedFoodItems: [],
       ));
     }
-
-    print("Search Results:");
-    for (var result in filteredRestaurant) {
-      print("Restaurant: ${result.name}");
-    }
-    for (var result in filteredMenu) {
-      print(
-          "Menu: ${result.menu.name} from Restaurant: ${result.restaurantName}");
-    }
   }
 
   void _onSelectChipType(SelectTypeEvent event, Emitter<SearchState> emit) {
-   // emit(state.copyWith(selectedChipType: event.chipLabel));
     final currentSelectedChip = state.selectedChipType;
 
     if (currentSelectedChip == event.chipLabel) {

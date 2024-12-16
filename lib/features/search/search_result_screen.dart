@@ -121,8 +121,10 @@ class SearchResultScreen extends StatelessWidget {
                                                 : searchState.selectedDistance,
                                       ),
                                   )
-                                  : const Center(
-                                      child: Text("Not Found"),
+                                  :  Center(
+                                      child: Text("No results found",style:context.textTheme.bodyLarge?.copyWith(
+                                        color: context.colorScheme.outlineVariant,
+                                      ),),
                                     ),
                         ),
                       ]);
