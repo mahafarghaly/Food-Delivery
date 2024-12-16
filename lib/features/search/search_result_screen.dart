@@ -101,22 +101,26 @@ class SearchResultScreen extends StatelessWidget {
                         ).paddingHorizontal(30.w),
                         Expanded(
                           child: searchState.filteredRestaurants.isNotEmpty
-                              ? PopularRestaurantList(
-                                  filteredRestaurant:
-                                      searchState.filteredRestaurants,
-                                  selectedDistance:
-                                      searchState.selectedDistance == 0
-                                          ? null
-                                          : searchState.selectedDistance,
-                                )
+                              ? SingleChildScrollView(
+                                child: PopularRestaurantList(
+                                    filteredRestaurant:
+                                        searchState.filteredRestaurants,
+                                    selectedDistance:
+                                        searchState.selectedDistance == 0
+                                            ? null
+                                            : searchState.selectedDistance,
+                                  ),
+                              )
                               : searchState.filteredMenu.isNotEmpty
-                                  ? PopularMenuList(
-                                      filteredMenu: searchState.filteredMenu,
-                                      selectedDistance:
-                                          searchState.selectedDistance == 0
-                                              ? null
-                                              : searchState.selectedDistance,
-                                    )
+                                  ? SingleChildScrollView(
+                                    child: PopularMenuList(
+                                        filteredMenu: searchState.filteredMenu,
+                                        selectedDistance:
+                                            searchState.selectedDistance == 0
+                                                ? null
+                                                : searchState.selectedDistance,
+                                      ),
+                                  )
                                   : const Center(
                                       child: Text("Not Found"),
                                     ),

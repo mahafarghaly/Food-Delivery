@@ -11,9 +11,9 @@ class NotificationSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BackgroundBox(
-        color: context.colorScheme.onPrimary,
+        color: context.colorScheme.onSecondaryContainer.withOpacity(0.8),
         child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 14.h, horizontal: 13.w),
+          padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 14.w),
           child: Stack(
             alignment: AlignmentDirectional.topEnd,
             children: [

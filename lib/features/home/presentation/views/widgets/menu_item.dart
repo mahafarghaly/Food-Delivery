@@ -13,6 +13,7 @@ final double price;
   @override
   Widget build(BuildContext context) {
     return Card(
+      color:context.colorScheme.onSecondaryContainer,
       margin: EdgeInsets.only(left: 20.w,right: 20.w,bottom: 10.h),
       child: Row(
         children: [

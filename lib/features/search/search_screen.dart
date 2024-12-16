@@ -231,7 +231,7 @@ class SearchScreen extends StatelessWidget {
                           "Search",
                           style: context.textTheme.bodyLarge?.copyWith(
                               fontSize: 14.sp,
-                              color: context.colorScheme.surface),
+                              color:Colors.white),
                         ),
                       )).paddingAll(25),
                 ],

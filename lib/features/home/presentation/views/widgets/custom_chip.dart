@@ -16,8 +16,8 @@ final String label;
           label,
           style: context.textTheme.labelMedium?.copyWith(
             color:
-           isSelected ? context.colorScheme.onPrimaryContainer:Colors.grey
-           // context.colorScheme.onPrimaryContainer
+           //isSelected ? context.colorScheme.onPrimaryContainer:Colors.grey
+           context.colorScheme.onPrimaryContainer
 
           )
         ),

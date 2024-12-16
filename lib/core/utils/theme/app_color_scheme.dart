@@ -12,7 +12,7 @@ extension AppColorScheme on AppTheme {
   ColorScheme get _lightColorScheme => const ColorScheme(
   brightness: Brightness.light,
     primary:  Color(0xff15BE77),
-    onPrimary:  Color(0xffFFFFFF),
+    onPrimary:  Color(0xffFFFFFF),//#FEFEFF
     secondary: Color(0xff53E88B),
     onSecondary: Color(0xFFFFFFFF),
     error: Color(0xFFBA1A1A),
@@ -25,6 +25,7 @@ extension AppColorScheme on AppTheme {
     surfaceDim: Color(0xff000000),
     outlineVariant: Color(0xff3B3B3B),
     onTertiaryContainer: Color(0xffFEAD1D),
+    onSecondaryContainer: Color(0xFFFEFEFF),
 
 
 
@@ -38,15 +39,16 @@ extension AppColorScheme on AppTheme {
     secondary: Color(0xff15BE77),
     onSecondary: Color(0xFFFFFFFF),
     error: Color(0xFFBA1A1A),
-    onError: Color(0xFFFFFFFF),
+    onError: Color(0xffFF4545),
     surface: Color(0xFF111318),
     onSurface: Color(0xFFE1E2E9),
-    onPrimaryContainer: Color(0xffDA6317),
+    onPrimaryContainer: Color(0xffFFFFFF),
     primaryContainer:Color(0xffF9A84D),
     scrim: Color(0xffFF7C32),
     surfaceDim: Color(0xffFFFFFF),
       outlineVariant: Color(0xFFFFFFFF),
     onTertiaryContainer: Color(0xffFEAD1D),
+    onSecondaryContainer: Color(0xff252525),
   );
 
 

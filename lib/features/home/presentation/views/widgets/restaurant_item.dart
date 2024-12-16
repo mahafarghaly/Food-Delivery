@@ -14,6 +14,7 @@ final String? image;
       height: 184.h,
       width: 147.w,
       child: Card(
+        color:context.colorScheme.onSecondaryContainer,
           margin: EdgeInsetsDirectional.symmetric(horizontal: 10.w),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(22.0.r),
