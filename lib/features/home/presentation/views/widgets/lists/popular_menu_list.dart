@@ -85,6 +85,7 @@ class PopularMenuList extends StatelessWidget {
                   ),).paddingTop(100.h),
                 )
                     : ListView.builder(
+                  padding: EdgeInsets.zero,
                      shrinkWrap: true,
                      physics: const NeverScrollableScrollPhysics(),
                       itemCount: itemCount,
