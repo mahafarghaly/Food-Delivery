@@ -11,7 +11,7 @@ extension AppThemeData on AppTheme {
     return ThemeData(
         fontFamily: "BentonSans",
         colorScheme: colorScheme,
-        scaffoldBackgroundColor: colorScheme.surface,
+        scaffoldBackgroundColor: colorScheme.surface.withOpacity(0.99),
          textTheme: textThemeData,
         // appBarTheme: appBarThemeData,
         bottomNavigationBarTheme: bottomNavBarTheme,

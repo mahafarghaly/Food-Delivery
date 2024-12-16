@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_app/core/exenstions/context_extenstion.dart';
 import 'package:food_app/core/exenstions/widget_extensions.dart';
 import 'package:food_app/core/utils/app_assets.dart';
-
 class RestaurantItem extends StatelessWidget {
   const RestaurantItem({super.key, this.name, this.image});
 final String? name;
@@ -15,7 +14,7 @@ final String? image;
       width: 147.w,
       child: Card(
         color:context.colorScheme.onSecondaryContainer,
-          margin: EdgeInsetsDirectional.symmetric(horizontal: 10.w),
+          margin: EdgeInsetsDirectional.symmetric(horizontal: 10.w,vertical: 1.h),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(22.0.r),
         ),

@@ -148,6 +148,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       filteredMenu:filteredMenu,
       filteredRestaurants: [],
       selectedFoodItems: currentSelected,
+      selectedChipType: ""
     ));
   }
 

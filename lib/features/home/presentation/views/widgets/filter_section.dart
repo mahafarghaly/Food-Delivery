@@ -14,6 +14,7 @@ class FilterSection extends StatelessWidget {
         padding: EdgeInsets.symmetric(vertical: 13.h, horizontal: 13.w),
         child: SvgPicture.asset(
           AppAssets.filter,
+          color:context.colorScheme.onPrimaryContainer ,
           // colorFilter: ColorFilter.mode(Colors.red, BlendMode.srcIn),
         ),
       ),

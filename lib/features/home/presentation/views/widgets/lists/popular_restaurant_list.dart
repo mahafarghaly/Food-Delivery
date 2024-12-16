@@ -1,8 +1,6 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:food_app/core/utils/app_assets.dart';
 import 'package:food_app/features/base/presentation/bloc/app_bloc.dart';
 import 'package:food_app/features/base/presentation/bloc/app_state.dart';
 import 'package:food_app/features/home/data/model/restaurant.dart';
