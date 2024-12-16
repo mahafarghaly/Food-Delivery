@@ -43,7 +43,8 @@ class SearchResultScreen extends StatelessWidget {
                       children: [
                         const HomeAppbarSection().paddingTop(60.h),
                         Padding(
-                          padding:  EdgeInsets.symmetric(horizontal: 25.w,vertical: 20.h),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 25.w, vertical: 20.h),
                           child: Wrap(
                             spacing: 8.0,
                             runSpacing: 8.0,
@@ -54,11 +55,12 @@ class SearchResultScreen extends StatelessWidget {
                                               .filteredRestaurants.isNotEmpty ||
                                           searchState.filteredMenu.isNotEmpty)
                                   ? CustomChip(
-                                      label:
-                                          "${searchState.selectedDistance!.toString()} KM",
-                                      isSelected: searchState.selectedDistance !=
-                                              0 ||
-                                          searchState.selectedDistance != null,
+                                      label:searchState.selectedDistance! < 10?"<10 KM":searchState.selectedDistance! > 10?">10 KM":
+                                          "1 KM",
+                                      isSelected:
+                                          searchState.selectedDistance != 0 ||
+                                              searchState.selectedDistance !=
+                                                  null,
                                       onTap: () {},
                                       onDelete: () {
                                         context

@@ -32,11 +32,12 @@ class BannerDisplay extends StatelessWidget {
                   child: Text("Special Deal For October",style:context.textTheme.titleSmall?.copyWith(
                     color: context.colorScheme.onPrimary
                   ),
+
                   )
                 ),
                 Expanded(
                   child: MaterialButton(
-                    height: 32.h,
+                 height: 32.h,
                     color: context.colorScheme.onPrimary,
                     shape:OutlineInputBorder(
                       borderRadius: BorderRadius.circular(6.r),

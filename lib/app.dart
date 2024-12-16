@@ -36,9 +36,9 @@ class FoodDeliveryApp extends StatelessWidget {
 
           final screens = [
           const HomeScreen(),
-            const Center(child: Text("Search Screen")),
             const Center(child: Text("Profile Screen")),
-            const Center(child: Text("Profile Screen")),
+            const Center(child: Text("Cart Screen")),
+            const Center(child: Text("Chat Screen")),
           ];
           return Scaffold(
             body: Stack(
@@ -78,24 +78,24 @@ class FoodDeliveryApp extends StatelessWidget {
                   items: [
                     buildNavItem(
                       context,
-                      icon: Icons.home,
+                      icon: AppAssets.home,
                       label: "Home",
                       isSelected: state.currentIndex == 0,
                     ),
                     buildNavItem(
                       context,
-                      icon: Icons.person,
+                      icon: AppAssets.profile,
                       label: "Profile",
                       isSelected: state.currentIndex == 1,
                     ),
                     buildNavItem(
                       context,
-                      icon: Icons.shopping_cart,
+                      icon: AppAssets.buy,
                       label: "Cart",
                       isSelected: state.currentIndex == 2,
                     ),
                     buildNavItem(context,
-                      icon: Icons.chat,
+                      icon: AppAssets.chat,
                       label: "Chat",
                       isSelected: state.currentIndex == 3,
                     ),
