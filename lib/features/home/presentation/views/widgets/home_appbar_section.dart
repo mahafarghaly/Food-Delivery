@@ -9,8 +9,9 @@ import 'filter_section.dart';
 import 'notfication_section.dart';
 
 class HomeAppbarSection extends StatelessWidget {
-  const HomeAppbarSection({super.key, this.enableSearch});
+  const HomeAppbarSection({super.key, this.enableSearch,  this.controller});
 final bool? enableSearch;
+  final TextEditingController? controller;
   @override
   Widget build(BuildContext context) {
     return  Column(
@@ -41,6 +42,7 @@ final bool? enableSearch;
                 },
                 child:  SearchTextField(
                   enable: enableSearch??false,
+                  controller: controller,
                 ).paddingRight(9.w),
               ),
             ),

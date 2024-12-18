@@ -19,14 +19,16 @@ class SearchScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextEditingController searchController = TextEditingController();
     return Scaffold(
       body: Stack(
         alignment: Alignment.topRight,
         children: [
           Positioned(
-              top: 0,
-              right: 0,
-              child: Image.asset(AppAssets.homeBackgroundImage)),
+            top: 0,
+            right: 0,
+            child: Image.asset(AppAssets.homeBackgroundImage),
+          ),
           BlocBuilder<SearchBloc, SearchState>(
             builder: (BuildContext context, SearchState searchState) {
               return Column(
@@ -36,8 +38,9 @@ class SearchScreen extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const HomeAppbarSection(
+                          HomeAppbarSection(
                             enableSearch: true,
+                            controller: searchController,
                           ).paddingTop(60.h),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -135,7 +138,7 @@ class SearchScreen extends StatelessWidget {
                                   )
                                 ],
                               ),
-                              SizedBox(height: 20.h), // Space before food chips
+                              SizedBox(height: 20.h),
                               Text(
                                 "Food",
                                 style: context.textTheme.bodyLarge,
@@ -199,34 +202,34 @@ class SearchScreen extends StatelessWidget {
                             end: Alignment.bottomRight),
                       ),
                       child: MaterialButton(
-                        onPressed: () {
-                          //  Navigator.pop(context);
-                          if (searchState.selectedFoodItems.isNotEmpty) {
+                        onPressed: () async {
+                          final query = searchController.text.trim();
+
+                          if (query.isNotEmpty) {
+                            context
+                                .read<SearchBloc>()
+                                .add(SearchRestaurantEvent(query));
+
+                            await Future.delayed(
+                              const Duration(milliseconds: 300),
+                            );
+                            final updatedState =
+                                context.read<SearchBloc>().state;
+
+                            searchWithQuery(updatedState, context);
+                          }
+                          else if (searchState.selectedFoodItems.isNotEmpty) {
                             AppNavigation.navigationTo(
-                                context,
-                                const SearchResultScreen(
-                                  text: "Popular Menu",
-                                ));
-                          } else if (searchState
-                              .filteredRestaurants.isNotEmpty) {
-                            AppNavigation.navigationTo(
-                                context,
-                                const SearchResultScreen(
-                                  text: " Popular Restaurant",
-                                ));
-                          } else if (searchState.filteredMenu.isNotEmpty) {
-                            AppNavigation.navigationTo(
-                                context,
-                                const SearchResultScreen(
-                                  text: " Popular Menu",
-                                ));
+                              context,
+                              const SearchResultScreen(text: "Popular Menu"),
+                            );
                           } else {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 backgroundColor:
                                     context.colorScheme.onPrimaryContainer,
                                 content: const Text(
-                                    "No results found. Please try a different search!"),
+                                    "The order cannot be empty."),
                                 duration: const Duration(seconds: 2),
                               ),
                             );
@@ -245,5 +248,30 @@ class SearchScreen extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void searchWithQuery(SearchState updatedState, BuildContext context) {
+    if (updatedState.filteredRestaurants.isNotEmpty) {
+      AppNavigation.navigationTo(
+        context,
+        const SearchResultScreen(
+            text: "Popular Restaurant"),
+      );
+    } else if (updatedState.filteredMenu.isNotEmpty) {
+      AppNavigation.navigationTo(
+        context,
+        const SearchResultScreen(text: "Popular Menu"),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor:
+              context.colorScheme.onPrimaryContainer,
+          content: const Text(
+              "No results found. Please try a different search!"),
+          duration: const Duration(seconds: 2),
+        ),
+      );
+    }
   }
 }
