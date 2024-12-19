@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_app/core/exenstions/context_extenstion.dart';
 import 'package:food_app/core/exenstions/widget_extensions.dart';
+import 'package:food_app/core/utils/app_strings.dart';
 import 'package:food_app/features/home/presentation/bloc/restaurant_bloc/restaurant_bloc.dart';
 import 'package:food_app/features/home/presentation/bloc/restaurant_bloc/restaurant_state.dart';
 import 'package:food_app/features/home/presentation/bloc/search_bloc/search_state.dart';
@@ -15,13 +16,8 @@ import '../home/presentation/views/widgets/home_appbar_section.dart';
 import '../home/presentation/views/widgets/lists/popular_menu_list.dart';
 
 class SearchResultScreen extends StatelessWidget {
-  const SearchResultScreen({
-    super.key,
-    this.text,
-  });
-
+  const SearchResultScreen({super.key, this.text,});
   final String? text;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,8 +51,8 @@ class SearchResultScreen extends StatelessWidget {
                                               .filteredRestaurants.isNotEmpty ||
                                           searchState.filteredMenu.isNotEmpty)
                                   ? CustomChip(
-                                      label:searchState.selectedDistance! < 10?"<10 KM":searchState.selectedDistance! > 10?">10 KM":
-                                          "1 KM",
+                                      label:searchState.selectedDistance! < 10?AppStrings.lTenKm:searchState.selectedDistance! > 10?AppStrings.gTenKm:
+                                          AppStrings.oneKm,
                                       isSelected:
                                           searchState.selectedDistance != 0 ||
                                               searchState.selectedDistance !=
@@ -122,7 +118,7 @@ class SearchResultScreen extends StatelessWidget {
                                       ),
                                   )
                                   :  Center(
-                                      child: Text("No results found",style:context.textTheme.bodyLarge?.copyWith(
+                                      child: Text(AppStrings.noResultsFound,style:context.textTheme.bodyLarge?.copyWith(
                                         color: context.colorScheme.outlineVariant,
                                       ),),
                                     ),

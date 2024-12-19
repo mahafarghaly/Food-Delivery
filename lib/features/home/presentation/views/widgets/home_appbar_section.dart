@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_app/core/exenstions/widget_extensions.dart';
 import 'package:food_app/core/utils/app_navigation.dart';
+import 'package:food_app/core/utils/app_strings.dart';
 import 'package:food_app/features/home/presentation/views/widgets/search_text_field.dart';
 import 'package:food_app/features/search/search_screen.dart';
 
@@ -20,7 +21,7 @@ final bool? enableSearch;
           children: [
             Expanded(
                 child: Text(
-                  "Find Your Favorite Food",
+                  AppStrings.findYourFavoriteFood,
                   style: Theme.of(context).textTheme.headlineMedium,
                 ).paddingLeft(31)),
             SizedBox(

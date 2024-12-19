@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_app/core/exenstions/context_extenstion.dart';
+import 'package:food_app/core/utils/app_strings.dart';
 import 'package:food_app/features/home/presentation/bloc/search_bloc/search_bloc.dart';
 import 'package:food_app/features/home/presentation/bloc/search_bloc/search_event.dart';
 import 'package:food_app/features/home/presentation/views/widgets/background_box.dart';
@@ -19,7 +20,7 @@ final String? hintText;
         style: Theme.of(context).textTheme.bodyMedium,
         decoration:  InputDecoration(
           prefixIcon: Icon(Icons.search,color: Theme.of(context).colorScheme.onPrimaryContainer,),
-              hintText: hintText??"What do you want to order?"
+              hintText: hintText??AppStrings.whatDoYouWantToOrder
         ),
         controller: controller,
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:food_app/core/utils/app_strings.dart';
 import 'package:food_app/features/base/data/helpers/request_state.dart';
 import 'package:food_app/features/home/presentation/bloc/restaurant_bloc/restaurant_bloc.dart';
 import 'package:food_app/features/home/presentation/bloc/restaurant_bloc/restaurant_state.dart';
@@ -47,8 +48,8 @@ class NearestRestaurantList extends StatelessWidget {
                 return SizedBox(
                   height: 184.h,
                   child:  filteredRestaurants.isEmpty
-                      ? const Center(
-                    child: Text("No Nearest restaurants available."),
+                      ?  Center(
+                    child: Text(AppStrings.noNRestaurantsAvailable),
                   )
                       :ListView.builder(
                       scrollDirection: Axis.horizontal,

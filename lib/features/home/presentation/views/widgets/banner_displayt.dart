@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_app/core/exenstions/context_extenstion.dart';
 import 'package:food_app/core/utils/app_assets.dart';
+import 'package:food_app/core/utils/app_strings.dart';
 class BannerDisplay extends StatelessWidget {
   const BannerDisplay({super.key});
 
@@ -29,7 +30,7 @@ class BannerDisplay extends StatelessWidget {
               children: [
                 Expanded(
                   flex:2,
-                  child: Text("Special Deal For October",style:context.textTheme.titleSmall?.copyWith(
+                  child: Text(AppStrings.specialDealForOctober,style:context.textTheme.titleSmall?.copyWith(
                     color: context.colorScheme.onPrimary
                   ),
 
@@ -43,7 +44,7 @@ class BannerDisplay extends StatelessWidget {
                       borderRadius: BorderRadius.circular(6.r),
                       borderSide: BorderSide(color: context.colorScheme.onPrimary)
                     ),
-                    onPressed: (){},child: Text("Buy Now",style:context.textTheme.bodySmall?.copyWith(
+                    onPressed: (){},child: Text(AppStrings.buyNow,style:context.textTheme.bodySmall?.copyWith(
                     color: context.colorScheme.primary
                   ),)),
                 ),

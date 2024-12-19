@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_app/core/exenstions/context_extenstion.dart';
 import 'package:food_app/core/exenstions/widget_extensions.dart';
 import 'package:food_app/core/utils/app_navigation.dart';
+import 'package:food_app/core/utils/app_strings.dart';
 import 'package:food_app/features/home/presentation/bloc/restaurant_bloc/restaurant_bloc.dart';
 import 'package:food_app/features/home/presentation/bloc/restaurant_bloc/restaurant_state.dart';
 import 'package:food_app/features/home/presentation/bloc/search_bloc/search_bloc.dart';
@@ -46,19 +47,19 @@ class SearchScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "Type",
+                                AppStrings.type,
                                 style: context.textTheme.bodyLarge,
                               ).paddingVertical(20.h),
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   CustomChip(
-                                    label: "Restaurant",
+                                    label: AppStrings.restaurant,
                                     isSelected: searchState.selectedChipType ==
-                                        "Restaurant",
+                                        AppStrings.restaurant,
                                     onTap: () {
                                       context.read<SearchBloc>().add(
-                                          const SelectTypeEvent("Restaurant"));
+                                           SelectTypeEvent(AppStrings.restaurant));
                                     },
                                     onDelete: () {
                                       context
@@ -68,13 +69,13 @@ class SearchScreen extends StatelessWidget {
                                   ),
                                   SizedBox(width: 10.h),
                                   CustomChip(
-                                    label: "Menu",
+                                    label: AppStrings.menu,
                                     isSelected:
-                                        searchState.selectedChipType == "Menu",
+                                        searchState.selectedChipType == AppStrings.menu,
                                     onTap: () {
                                       context
                                           .read<SearchBloc>()
-                                          .add(const SelectTypeEvent("Menu"));
+                                          .add( SelectTypeEvent( AppStrings.menu));
                                     },
                                     onDelete: () {
                                       context
@@ -85,14 +86,14 @@ class SearchScreen extends StatelessWidget {
                                 ],
                               ),
                               Text(
-                                "Location",
+                                AppStrings.location,
                                 style: context.textTheme.bodyLarge,
                               ).paddingVertical(20.h),
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   CustomChip(
-                                    label: "1 KM",
+                                    label: AppStrings.oneKm,
                                     isSelected:
                                         searchState.selectedDistance == 1.0,
                                     onTap: () {
@@ -107,7 +108,7 @@ class SearchScreen extends StatelessWidget {
                                     },
                                   ).paddingRight(10.w),
                                   CustomChip(
-                                    label: ">10 KM",
+                                    label: AppStrings.gTenKm,
                                     isSelected:
                                         searchState.selectedDistance == 50.0,
                                     onTap: () {
@@ -122,7 +123,7 @@ class SearchScreen extends StatelessWidget {
                                     },
                                   ).paddingRight(10.w),
                                   CustomChip(
-                                    label: "<10 KM",
+                                    label: AppStrings.lTenKm,
                                     isSelected:
                                         searchState.selectedDistance == 5.0,
                                     onTap: () {
@@ -140,7 +141,7 @@ class SearchScreen extends StatelessWidget {
                               ),
                               SizedBox(height: 20.h),
                               Text(
-                                "Food",
+                                AppStrings.food,
                                 style: context.textTheme.bodyLarge,
                               ).paddingVertical(10.h),
                               BlocBuilder<RestaurantsBloc, RestaurantsState>(
@@ -221,22 +222,22 @@ class SearchScreen extends StatelessWidget {
                           else if (searchState.selectedFoodItems.isNotEmpty) {
                             AppNavigation.navigationTo(
                               context,
-                              const SearchResultScreen(text: "Popular Menu"),
+                               SearchResultScreen(text:AppStrings.popularMenu),
                             );
                           } else {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 backgroundColor:
                                     context.colorScheme.onPrimaryContainer,
-                                content: const Text(
-                                    "The order cannot be empty."),
+                                content:  Text(
+                                    AppStrings.theOrderCannotBeEmpty),
                                 duration: const Duration(seconds: 2),
                               ),
                             );
                           }
                         },
                         child: Text(
-                          "Search",
+                          AppStrings.search,
                           style: context.textTheme.bodyLarge
                               ?.copyWith(fontSize: 14.sp, color: Colors.white),
                         ),
@@ -254,21 +255,21 @@ class SearchScreen extends StatelessWidget {
     if (updatedState.filteredRestaurants.isNotEmpty) {
       AppNavigation.navigationTo(
         context,
-        const SearchResultScreen(
-            text: "Popular Restaurant"),
+         SearchResultScreen(
+            text: AppStrings.popularRestaurants),
       );
     } else if (updatedState.filteredMenu.isNotEmpty) {
       AppNavigation.navigationTo(
         context,
-        const SearchResultScreen(text: "Popular Menu"),
+         SearchResultScreen(text:AppStrings.popularMenu),
       );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           backgroundColor:
               context.colorScheme.onPrimaryContainer,
-          content: const Text(
-              "No results found. Please try a different search!"),
+          content:  Text(
+             AppStrings.noResultsFoundPleaseTryDifferentSearch ),
           duration: const Duration(seconds: 2),
         ),
       );

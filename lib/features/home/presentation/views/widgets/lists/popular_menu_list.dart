@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_app/core/exenstions/context_extenstion.dart';
 import 'package:food_app/core/exenstions/widget_extensions.dart';
+import 'package:food_app/core/utils/app_strings.dart';
 import 'package:food_app/features/base/data/helpers/request_state.dart';
 import 'package:food_app/features/base/presentation/bloc/app_bloc.dart';
 import 'package:food_app/features/base/presentation/bloc/app_state.dart';
@@ -80,7 +81,7 @@ class PopularMenuList extends StatelessWidget {
 
                 return popularMenuItems.isEmpty
                     ?  Center(
-                  child:  Text("No popular menu items available.",style:context.textTheme.bodyMedium?.copyWith(
+                  child:  Text(AppStrings.noPopularMenuItemsAvailable,style:context.textTheme.bodyMedium?.copyWith(
                     color: context.colorScheme.outlineVariant,
                   ),).paddingTop(100.h),
                 )
