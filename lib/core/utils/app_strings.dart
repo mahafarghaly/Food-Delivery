@@ -8,6 +8,7 @@ static String popularRestaurants="Popular Restaurants";
 static String popularMenu="Popular Menu";
 static String viewMore="View More";
 static String viewLess ="View Less";
+static String viewAll="View All";
 static String noNRestaurantsAvailable ="No Nearest restaurants available.";
 static String noPopularMenuItemsAvailable="No popular menu items available.";
 static String noPopularRestaurantsAvailable="No popular restaurants available.";

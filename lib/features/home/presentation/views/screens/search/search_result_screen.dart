@@ -8,12 +8,12 @@ import 'package:food_app/features/home/presentation/bloc/restaurant_bloc/restaur
 import 'package:food_app/features/home/presentation/bloc/restaurant_bloc/restaurant_state.dart';
 import 'package:food_app/features/home/presentation/bloc/search_bloc/search_state.dart';
 import 'package:food_app/features/home/presentation/views/widgets/lists/popular_restaurant_list.dart';
-import '../../core/utils/app_assets.dart';
-import '../home/presentation/bloc/search_bloc/search_bloc.dart';
-import '../home/presentation/bloc/search_bloc/search_event.dart';
-import '../home/presentation/views/widgets/custom_chip.dart';
-import '../home/presentation/views/widgets/home_appbar_section.dart';
-import '../home/presentation/views/widgets/lists/popular_menu_list.dart';
+import '../../../../../../core/utils/app_assets.dart';
+import '../../../bloc/search_bloc/search_bloc.dart';
+import '../../../bloc/search_bloc/search_event.dart';
+import '../../widgets/custom_chip.dart';
+import '../../widgets/home_appbar_section.dart';
+import '../../widgets/lists/popular_menu_list.dart';
 
 class SearchResultScreen extends StatelessWidget {
   const SearchResultScreen({super.key, this.text,});

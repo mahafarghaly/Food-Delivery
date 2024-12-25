@@ -4,7 +4,7 @@ import 'package:food_app/core/utils/app_assets.dart';
 import 'package:food_app/core/utils/theme/app_theme_data.dart';
 import 'package:food_app/features/home/presentation/bloc/search_bloc/search_bloc.dart';
 import 'package:food_app/features/home/presentation/views/screens/home_screen.dart';
-import 'package:food_app/features/search/search_result_screen.dart';
+import 'package:food_app/features/home/presentation/views/screens/search/search_result_screen.dart';
 import 'core/service/service_locator.dart';
 import 'core/utils/theme/app_theme.dart';
 import 'features/base/presentation/bloc/app_bloc.dart';
@@ -72,9 +72,6 @@ class FoodDeliveryApp extends StatelessWidget {
                         .read<AppBloc>()
                         .add(ChangeBottomNavIndexEvent(index));
                   },
-                  type: BottomNavigationBarType.shifting,
-                  showSelectedLabels: false,
-
                   items: [
                     buildNavItem(
                       context,

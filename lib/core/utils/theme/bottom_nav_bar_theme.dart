@@ -12,7 +12,7 @@ extension AppBottomNavBarTheme on AppTheme{
       ),
       showSelectedLabels: false,
       showUnselectedLabels: false,
-      type: BottomNavigationBarType.fixed,
+      type: BottomNavigationBarType.shifting,
       unselectedIconTheme: IconThemeData(
           color: colorScheme.primary.withOpacity(0.35)
       ),

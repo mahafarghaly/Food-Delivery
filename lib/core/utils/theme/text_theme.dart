@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:food_app/core/utils/constants.dart';
 import 'package:food_app/core/utils/theme/app_color_scheme.dart';
 import 'package:food_app/core/utils/theme/app_theme.dart';
 
@@ -35,7 +36,7 @@ extension AppTextTheme on AppTheme{
             fontWeight: FontWeight.w400,
             color: colorScheme.onSurface),
         bodyMedium: TextStyle(
-          fontFamily: "BentonSans Medium",
+          fontFamily: Constants.bentonSansMediumFamily,
           fontSize: 14.sp,
           fontWeight: FontWeight.w400,
           color: colorScheme.onSurface,

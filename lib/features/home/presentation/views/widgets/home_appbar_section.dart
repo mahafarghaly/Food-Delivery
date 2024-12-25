@@ -4,7 +4,7 @@ import 'package:food_app/core/exenstions/widget_extensions.dart';
 import 'package:food_app/core/utils/app_navigation.dart';
 import 'package:food_app/core/utils/app_strings.dart';
 import 'package:food_app/features/home/presentation/views/widgets/search_text_field.dart';
-import 'package:food_app/features/search/search_screen.dart';
+import 'package:food_app/features/home/presentation/views/screens/search/search_screen.dart';
 
 import 'filter_section.dart';
 import 'notfication_section.dart';

@@ -11,9 +11,9 @@ import 'package:food_app/features/home/presentation/bloc/search_bloc/search_bloc
 import 'package:food_app/features/home/presentation/bloc/search_bloc/search_state.dart';
 import 'package:food_app/features/home/presentation/views/widgets/custom_chip.dart';
 import 'package:food_app/features/home/presentation/views/widgets/home_appbar_section.dart';
-import 'package:food_app/features/search/search_result_screen.dart';
-import '../../core/utils/app_assets.dart';
-import '../home/presentation/bloc/search_bloc/search_event.dart';
+import 'package:food_app/features/home/presentation/views/screens/search/search_result_screen.dart';
+import '../../../../../../core/utils/app_assets.dart';
+import '../../../bloc/search_bloc/search_event.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({super.key});

@@ -9,4 +9,6 @@ class AppAssets{
   static String chat ="assets/images/chat.svg";
   static String buy ="assets/images/buy.svg";
   static String profile ="assets/images/profile.svg";
+  static String restaurantPlaceholder="assets/images/restaurant_placeholder.jpeg";
+  static String notFoundAnimation ="assets/lottie/not_found.json";
 }

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:food_app/core/exenstions/context_extenstion.dart';
@@ -24,7 +25,16 @@ final String? image;
 
           children: [
             image!=null?
-            Image.network(image!,height: 90.h,width: 90.w,fit: BoxFit.cover,).paddingHorizontal(26.w):
+          //  Image.network(image!,height: 90.h,width: 90.w,fit: BoxFit.cover,).paddingHorizontal(26.w):
+            CachedNetworkImage(
+              imageUrl: image!,
+              height: 90.h,
+              width: 90.w,
+              fit: BoxFit.cover,
+              placeholder: (context, url) => const CircularProgressIndicator(),
+              errorWidget: (context, url, error) =>
+              const Icon(Icons.error),
+            ).paddingHorizontal(26.w):
             Image.asset(AppAssets.testImage),
             Text(name??"not found",style:context.textTheme.labelLarge,).paddingTop(10),
             SizedBox(height: 4.h,),
@@ -32,10 +42,6 @@ final String? image;
                 fontSize: 13.sp,
                 color: context.colorScheme.surfaceDim.withOpacity(0.5)
             ),)//.paddingBottom(26)
-
-
-
-
           ],
         )
       ),

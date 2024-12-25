@@ -11,6 +11,8 @@ import 'package:food_app/features/home/data/model/menu_with_restaurant.dart';
 import 'package:food_app/features/home/presentation/bloc/restaurant_bloc/restaurant_bloc.dart';
 import 'package:food_app/features/home/presentation/bloc/restaurant_bloc/restaurant_state.dart';
 import 'package:food_app/features/home/presentation/views/widgets/menu_item.dart';
+import 'package:lottie/lottie.dart';
+import '../../../../../../core/utils/app_assets.dart';
 import '../../../../../../core/utils/calculate_distance.dart';
 import '../../../../data/model/restaurant.dart';
 class PopularMenuList extends StatelessWidget {
@@ -81,9 +83,12 @@ class PopularMenuList extends StatelessWidget {
 
                 return popularMenuItems.isEmpty
                     ?  Center(
-                  child:  Text(AppStrings.noPopularMenuItemsAvailable,style:context.textTheme.bodyMedium?.copyWith(
-                    color: context.colorScheme.outlineVariant,
-                  ),).paddingTop(100.h),
+                  child: SizedBox(
+                    height: 171.h,
+                      child: Lottie.asset(AppAssets.notFoundAnimation)),
+                  // Text(AppStrings.noPopularMenuItemsAvailable,style:context.textTheme.bodyMedium?.copyWith(
+                  //   color: context.colorScheme.outlineVariant,
+                  // ),).paddingTop(100.h),
                 )
                     : ListView.builder(
                   padding: EdgeInsets.zero,

@@ -26,6 +26,8 @@ extension AppColorScheme on AppTheme {
     outlineVariant: Color(0xff3B3B3B),
     onTertiaryContainer: Color(0xffFEAD1D),
     onSecondaryContainer: Color(0xffFFFFFF),
+    surfaceTint: Color(0xffFEF6ED),
+    outline: Color(0xffFF1D1D),
 
 
 
@@ -49,6 +51,7 @@ extension AppColorScheme on AppTheme {
       outlineVariant: Color(0xFFFFFFFF),
     onTertiaryContainer: Color(0xffFEAD1D),
     onSecondaryContainer: Color(0xff252525),
+      surfaceTint: Color(0xffFEF6ED)
   );
 
 
